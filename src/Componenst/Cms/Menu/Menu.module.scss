@@ -1,0 +1,28 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+
+    flex-shrink: 0;
+    width: 200px;
+    // border: 1px solid red;
+    height: 100%;
+    position: relative;
+    
+    .content{
+        position:sticky;
+        top: 0;
+        // border: 1px solid red;
+        padding: 0px;
+        margin: 0px;
+        ul{
+            padding: 0px;
+            margin: 0px;
+            li{
+                padding: 0px;
+                margin: 0px 0px 10px 0px;
+                list-style-type: none;
+            }
+        }
+    }
+
+}

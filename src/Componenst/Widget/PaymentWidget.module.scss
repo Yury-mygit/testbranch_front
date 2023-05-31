@@ -1,0 +1,35 @@
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    // border: 22px solid green;
+    padding: 0px 20px 0px 20px;
+    
+
+    .content{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+        margin-bottom: 10px;
+        // border: 1px solid black;
+    }
+    .shop{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 30px;
+    }
+
+}
+
+
+.input{
+    border: 0px solid black;
+    border-bottom: 2px solid black;
+    width: 20px;
+    
+}

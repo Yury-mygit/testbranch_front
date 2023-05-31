@@ -1,0 +1,105 @@
+.wrapper{
+    margin: 0px 0px 40px 10px;
+    flex-shrink: 1;
+    // border: 1px solid black;
+    .description{
+        margin: 0px 0px 40px 00px;
+    }
+    p{
+        font-size: 17px;
+    }
+    .desk_text{
+        margin: 0px 0px 10px 0px;
+    }
+    h3 {
+        font-size: 25px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    
+    .compare{
+        display: flex;
+        flex-direction: row;
+    }
+    .paytech{
+        display: flex;
+        // border: 1px solid black;
+        margin: 0px 0px 20px 0px;
+        .opt{
+            width: 400px;
+            flex-shrink: 0;
+        }
+    }
+
+    .desk_workWay{
+        
+        padding: 10px 00px 0px 30px;
+        margin: 0px 0px 40px 0px;
+        >h4{
+            font-size: 17px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        .step{
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
+            justify-content: space-between;
+            // border: 1px solid black;
+            width: 100%;
+            margin: 0px 0px 20px 0px;
+            .title{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            >:nth-child(1){
+                // border: 2px solid red;
+                // width: 200px; 
+                flex: 20%;
+                flex-grow: 2;
+                
+            }
+            >:nth-child(2){
+                // border: 2px solid black;
+                // width: 40%;
+                flex-grow: 2;
+                flex: 40%;
+                
+            }
+            >:nth-child(3){
+                // border: 2px solid green;
+                // width: 200px;
+                flex: 40%;
+                flex-grow: 2;
+               
+                
+            }
+            >*{
+                 
+                // border: 2px solid black;
+                flex-wrap: nowrap;
+                margin: 0px 30p 0px 30px;
+                
+                 
+            }
+        }
+
+        h4{
+            font-size: 16px;
+        }
+
+        .innerList{
+            margin: 0px 0px 0px 30px;
+        }
+    }
+
+    .errors{
+        margin: 0px 0px 0px 0px;
+        li{
+            margin-left: 20px;
+        }
+    }
+   
+}

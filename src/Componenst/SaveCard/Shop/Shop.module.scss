@@ -1,0 +1,30 @@
+.wrapper{
+    // padding-top: 500px;
+    display: flex;
+    // flex-wrap: wrap;
+    flex-direction: column;
+    width: 400px;
+    flex-shrink: 0;
+    // border: 1px solid black;
+
+    h4{
+        font-size: 18px;
+    }
+
+
+    .gallery{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+
+        
+    }
+
+    .actionButtons{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+

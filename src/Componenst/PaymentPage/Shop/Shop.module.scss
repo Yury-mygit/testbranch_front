@@ -1,0 +1,35 @@
+.wrapper{
+    // padding-top: 500px;
+    display: flex;
+    // flex-wrap: wrap;
+    flex-direction: column;
+    // width: 400px;
+    flex-shrink: 0;
+    // border: 1px solid black;
+
+    .process{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .title{
+        font-size: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        // border: 1px solid red;
+        width: 100%;
+        margin: 0px 0px 20px 0px;
+    }
+
+
+
+    .actionButtons{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+
