@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import {params} from "../../library/library"
+import {params, filter} from "../../library/library"
 import cl from './GateToGate.module.scss'
-
 
 import { usePayMutation, useLazyGetParesQuery, usePayAfter3dsMutation } from '../../API/gateAPI';
 import md5 from 'md5'
@@ -12,7 +11,7 @@ import md5 from 'md5'
 import PayBefore3DS from './PayBefore3DS/PayBefore3DS';
 import Do3DS from './Do3DS/Do3DS';
 import PayAfter3DS from './PayAfter3DS/PayAfter3DS';
-import Flow from '../Common/Flow/Flow';
+import Flow,{states} from '../Common/Flow/Flow';
 
 let timerId
 
@@ -22,21 +21,7 @@ const GateToGate = () => {
 
     const [paramsForPay, setParamsForPay] = useState(params)
 
-    const [flowParams, setFlowParams] = useState({
-        'data':{'status':'current','text':'Данные'},
-        'request':{'status':'notreached','text':'Запрос'},
-        'responce':{'status':'notreached','text':'Ответ'},
-        'choiceStatus':{'status':'notreached','text':'pg_status=?'},
-        'error':{'status':'notreached','text':'Error','testBefore':"error"},
-        'choiceIs3DSRequired':{'status':'notreached','text':'pg_3ds=?','testBefore':"ok"},
-        'finalWithout3DS':{'status':'notreached','text':'Данные'},
-        'dataAfter3DS':{'status':'notreached','text':'Данные'},
-        'requestAfter3DS':{'status':'notreached','text':'Данные'},
-        'responceAfter3DS':{'status':'notreached','text':'Данные'},
-        'choicePaymentStatus':{'status':'notreached','text':'Данные'},
-        'paymentFail':{'status':'notreached','text':'Данные'},
-        'paymentSuccess':{'status':'notreached','text':'Данные'},
-    })
+    const [flowParams, setFlowParams] = useState('new order')
 
     const [data3ds, setData3ds ] = useState({})
 
@@ -75,76 +60,77 @@ const GateToGate = () => {
     useEffect(()=>{
         // console.log(payBefore3dsResponse)
         // console.log('payBefore3dsResponse',payBefore3dsResponse)
-        if (!payBefore3dsResponse.isUninitialized, payBefore3dsResponse.isSuccess){
-            setFlowParams(prev=>{
+        // if (!payBefore3dsResponse.isUninitialized, payBefore3dsResponse.isSuccess){
+        //     setFlowParams(prev=>{
 
-                let temp = structuredClone(prev)
+        //         let temp = structuredClone(prev)
                 
-                temp.request.status='completed'
-                temp.responce.status='completed'
-                temp.choiceStatus.status='completed'
+        //         temp.request.status='completed'
+        //         temp.responce.status='completed'
+        //         temp.choiceStatus.status='completed'
                
-                if(payBefore3dsResponse.data.pg_status=='error')  temp.error.status='completed'
-                if(payBefore3dsResponse.data.pg_status=='ok')  {
-                    temp.choiceIs3DSRequired.status='completed'
-                    if('pg_3ds' in payBefore3dsResponse.data){
-                        if(payBefore3dsResponse.data.pg_3ds == 0 ){
-                            temp.finalWithout3DS.status='completed'
-                        }
-                        if(payBefore3dsResponse.data.pg_3ds == 1 ){
-                            temp.dataAfter3DS.status='completed'
-                            temp.requestAfter3DS.status='current'
-                        }
-                    }
-                }
-                // console.log('payBefore3dsResponse',payBefore3dsResponse)
-                console.log(temp)
-                console.log(payBefore3dsResponse)
+        //         if(payBefore3dsResponse.data.pg_status=='error')  temp.error.status='completed'
+        //         if(payBefore3dsResponse.data.pg_status=='ok')  {
+        //             temp.choiceIs3DSRequired.status='completed'
+        //             if('pg_3ds' in payBefore3dsResponse.data){
+        //                 if(payBefore3dsResponse.data.pg_3ds == 0 ){
+        //                     temp.finalWithout3DS.status='completed'
+        //                 }
+        //                 if(payBefore3dsResponse.data.pg_3ds == 1 ){
+        //                     temp.dataAfter3DS.status='completed'
+        //                     temp.requestAfter3DS.status='current'
+        //                 }
+        //             }
+        //         }
+        //         // console.log('payBefore3dsResponse',payBefore3dsResponse)
+        //         console.log(temp)
+        //         console.log(payBefore3dsResponse)
     
-                return temp
-            })
-        }
+        //         return temp
+        //     })
+        // }
        
         // let temp = JSON.parse(localStorage.getItem('payBefore3dsResponse'));
 
 
         if (!payBefore3dsResponse.isUninitialized, payBefore3dsResponse.isSuccess){
-            setFlowParams(prev=>{
+            // setFlowParams(prev=>{
 
-                let temp = structuredClone(prev)
+            //     let temp = structuredClone(prev)
                 
-                temp.request.status='completed'
-                temp.responce.status='completed'
-                temp.choiceStatus.status='completed'
+            //     temp.request.status='completed'
+            //     temp.responce.status='completed'
+            //     temp.choiceStatus.status='completed'
                
-                if(payBefore3dsResponse.data.pg_status=='error')  temp.error.status='completed'
-                if(payBefore3dsResponse.data.pg_status=='ok')  {
-                    temp.choiceIs3DSRequired.status='completed'
-                    if('pg_3ds' in payBefore3dsResponse.data){
-                        if(payBefore3dsResponse.data.pg_3ds == 0 ){
-                            temp.finalWithout3DS.status='completed'
-                        }
-                        if(payBefore3dsResponse.data.pg_3ds == 1 ){
-                            temp.dataAfter3DS.status='completed'
-                            temp.requestAfter3DS.status='current'
-                        }
-                    }
-                }
-                // console.log('payBefore3dsResponse',payBefore3dsResponse)
-                console.log(temp)
-                console.log(payBefore3dsResponse)
+            //     if(payBefore3dsResponse.data.pg_status=='error')  temp.error.status='completed'
+            //     if(payBefore3dsResponse.data.pg_status=='ok')  {
+            //         temp.choiceIs3DSRequired.status='completed'
+            //         if('pg_3ds' in payBefore3dsResponse.data){
+            //             if(payBefore3dsResponse.data.pg_3ds == 0 ){
+            //                 temp.finalWithout3DS.status='completed'
+            //             }
+            //             if(payBefore3dsResponse.data.pg_3ds == 1 ){
+            //                 temp.dataAfter3DS.status='completed'
+            //                 temp.requestAfter3DS.status='current'
+            //             }
+            //         }
+            //     }
+            //     // console.log('payBefore3dsResponse',payBefore3dsResponse)
+            //     // console.log(temp)
+            //     // console.log(payBefore3dsResponse)
     
-                return temp
-            })
+            //     return temp
+            // })
+            setFlowParams('new order')
         }
 
         if (!payBefore3dsResponse.isUninitialized, payBefore3dsResponse.isSuccess){
             localStorage.setItem('payBefore3dsResponse', JSON.stringify(payBefore3dsResponse)); 
         }
 
-        // if (!payBefore3dsResponse.isUninitialized, payBefore3dsResponse.isSuccess){
-        //     setData3ds({...payBefore3dsResponse.data}) 
-        // }
+        // // if (!payBefore3dsResponse.isUninitialized, payBefore3dsResponse.isSuccess){
+        // //     setData3ds({...payBefore3dsResponse.data}) 
+        // // }
              
     },[payBefore3dsResponse])
 
@@ -156,38 +142,44 @@ const GateToGate = () => {
        
         if (data){
             // console.log(data)
-            setFlowParams(prev=>{
+            // setFlowParams(prev=>{
 
-                let temp = structuredClone(prev)
+            //     let temp = structuredClone(prev)
                 
-                temp.request.status='completed'
-                temp.responce.status='completed'
-                temp.choiceStatus.status='completed'
+            //     temp.request.status='completed'
+            //     temp.responce.status='completed'
+            //     temp.choiceStatus.status='completed'
                
-                if(data.data.pg_status=='error')  temp.error.status='completed'
-                if(data.data.pg_status=='ok')  {
-                    temp.choiceIs3DSRequired.status='completed'
-                    if('pg_3ds' in data.data){
-                        if(data.data.pg_3ds == 0 ){
-                            temp.finalWithout3DS.status='completed'
-                        }
-                        if(data.data.pg_3ds == 1 ){
-                            temp.dataAfter3DS.status='completed'
-                            temp.requestAfter3DS.status='current'
-                        }
-                    }
-                }
-                // console.log('payBefore3dsResponse',payBefore3dsResponse)
-                // console.log(temp)
-                // console.log(payBefore3dsResponse)
+            //     if(data.data.pg_status=='error')  temp.error.status='completed'
+            //     if(data.data.pg_status=='ok')  {
+            //         temp.choiceIs3DSRequired.status='completed'
+            //         if('pg_3ds' in data.data){
+            //             if(data.data.pg_3ds == 0 ){
+            //                 temp.finalWithout3DS.status='completed'
+            //             }
+            //             if(data.data.pg_3ds == 1 ){
+            //                 temp.dataAfter3DS.status='completed'
+            //                 temp.requestAfter3DS.status='current'
+            //             }
+            //         }
+            //     }
+            //     // console.log('payBefore3dsResponse',payBefore3dsResponse)
+            //     // console.log(temp)
+            //     // console.log(payBefore3dsResponse)
     
-                return temp
-            })
+            //     return temp
+            // })
+            setFlowParams(states.new)
         }
     },[])
 
     const doPayBefore3DS = () => {
         let object = {}
+
+        localStorage.removeItem("payBefore3dsResponse");
+
+        setFlowParams('new order')
+
         let data = paramsForPay
             .filter(i=>{
                 return ( 
@@ -197,22 +189,18 @@ const GateToGate = () => {
                 )
             }).forEach(item=> object[item.inputID]=item.data)  
 
-
         payBefore3dsRequest(object).unwrap()
         // temp = JSON.parse(localStorage.getItem('user'));
         // if(!temp) console.log('dfsfs')
         // console.log(temp)
 
-        if (!JSON.parse(localStorage.getItem('payBefore3dsResponse')))    
-        setFlowParams(prev=>{
-            prev.data.status='completed'
-            prev.request.status='current'
-            return prev
-        })
+        // if (!JSON.parse(localStorage.getItem('payBefore3dsResponse')))    
+        // setFlowParams(prev=>{
+        //     prev.data.status='completed'
+        //     prev.request.status='current'
+        //     return prev
+        // })
     }
-
-
-
 
     const sendUserTo3DS = ()=>{
         
@@ -281,29 +269,21 @@ const GateToGate = () => {
         // })
     }
 
-
-    // console.log('data', data3ds)
+    let xmlview = filter(payBefore3dsResponse,'xml')
+    // console.log(xmlview)
 
     return (
         <div className={cl.wrapper}> 
 
-            <h3>Оплата c G2G</h3>
-
             <div className={cl.content}>
-
-               <Flow
-                    params = {flowParams}
-               
-               />
 
                 <div className={cl.data}>
 
                     <PayBefore3DS 
                         paramsForPay = {paramsForPay}
                         setParamsForPay = {setParamsForPay}
-                        sigPayBefore3DS = {sigPayBefore3DS}
-                        payBefore3dsResponse = {payBefore3dsResponse}
-                        doPayBefore3DS = {doPayBefore3DS}                       
+                        doPayBefore3DS = {doPayBefore3DS} 
+                        xml = {filter(payBefore3dsResponse,'xml')}                      
                     />
 
                     <Do3DS  
@@ -320,13 +300,10 @@ const GateToGate = () => {
                         sigPayAfter3DS = {sigPayAfter3DS}
                     />
                 </div>
-            </div>
-
-            
-            
-         
-                                                            
-            
+                <Flow
+                    status = {flowParams}
+               />
+            </div>          
                      
         </div>
     );

@@ -1,10 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import {server} from '../settings'
+
+// console.log(server)
 
 // http://testbench/api/greeting
 export const gateApi = createApi({
     reducerPath: 'gateApi',
     baseQuery: fetchBaseQuery({ 
-        baseUrl: "https://8c98-46-39-54-110.ngrok-free.app/api/g2g",
+        baseUrl: `${server}/g2g`,
         
         prepareHeaders: (headers) => {
             headers.set('Access-Control-Allow-Origin', '*');

@@ -7,15 +7,14 @@ import Form from '../../Common/Form/Form';
 import ScreenRequest from '../../Common/ScreenRequest/ScreenRequest';
 import ScreenResponse from '../../Common/ScreenResponse/ScreenResponse';
 
-const PayBefore3DS = ({paramsForPay, setParamsForPay, sigPayBefore3DS, payBefore3dsResponse, doPayBefore3DS}) => {
+const PayBefore3DS = ({paramsForPay, setParamsForPay, xml, doPayBefore3DS}) => {
     return (
         <div className={cl.wrapper}>
         <DeskriptionPay3DS />
         <div className={cl.content}>
             <Form 
                 status={paramsForPay} 
-                setStatus={setParamsForPay}
-                sig = {sigPayBefore3DS} 
+                setStatus={setParamsForPay} 
             />
             
             <ScreenRequest 
@@ -29,7 +28,7 @@ const PayBefore3DS = ({paramsForPay, setParamsForPay, sigPayBefore3DS, payBefore
                 
            
             <ScreenResponse                            
-                view = {filter(payBefore3dsResponse,'xml')}
+                xml = {xml}
             />
            
         </div>

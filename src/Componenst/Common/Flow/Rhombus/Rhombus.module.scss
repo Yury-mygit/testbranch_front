@@ -1,7 +1,7 @@
 .wrapper{
-    // border: 1px solid red;
+    // border: 1px solid black;
     margin: 0px 0px 0px 0px;
-    width: 100%;
+    width: 140px;
     // height: 90px;
     display: flex;
     flex-direction: column;
@@ -9,8 +9,8 @@
     flex-shrink: 0;
     // border: 1px solid red;
     .RhombusOut{
-        width: 150px;
-        height: 50px;
+        width: 130px;
+        height: 40px;
         flex-shrink: 0;
         border-radius: 10px;
         margin: 0px 0px 0px 0px;
@@ -22,8 +22,8 @@
         // background-color: black;  
         // border: 1px solid red;
         .Rhombus{
-            width: 85%;
-            height: 85%;
+            width: 90%;
+            height: 90%;
             flex-shrink: 0;
             border-radius: 10px;
             margin: 0px 0px 0px 0px;
@@ -33,7 +33,7 @@
             align-items: center;
             clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
             background-color: white; 
-            font-size: 13px; 
+            font-size: 12px; 
             >*{                    
                 position: relative;
                 top: -1px;                    
@@ -50,8 +50,8 @@
         }
     }
     img{
-        width: 60px;
-        height: 30px;
+        width: 40px;
+        height: 20px;
         margin: 0px 0px 0px 0px;
         padding: 5px 0px 5px 0px;
     }

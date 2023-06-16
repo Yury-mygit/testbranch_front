@@ -23,7 +23,7 @@ const Rhombus = ({
         <div className={cl.wrapper}>
 
             {testBefore!='' ? <div> {testBefore} </div> :'' }
-            {arrowOn ? <img  src={arrow} /> :'' }
+            {/* {arrowOn ? <img  src={arrow} /> :'' } */}
             
             {/* // Не работает задание стилей в таком виде */}
             <div className={[cl.RhombusOut, cl[status]].join(' ')}

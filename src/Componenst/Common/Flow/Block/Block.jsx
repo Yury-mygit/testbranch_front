@@ -15,7 +15,7 @@ const Block = ({
     return (
         <div className={cl.wrapper}>
             {testBefore!='' ? <div> {testBefore} </div> :'' }
-            {arrowOn ? <img  src={arrow} /> :'' } 
+            {/* {arrowOn ? <img  src={arrow} /> :'' }  */}
             <div className={[cl.block, cl[status]].join(' ')}>
                 {text}    
             </div>  
