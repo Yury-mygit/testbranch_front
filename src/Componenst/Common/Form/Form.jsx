@@ -4,7 +4,7 @@ import Block from './Block/Block';
 
 
 
-const Form = ({status, setStatus, sig}) => {
+const Form = ({status=[], setStatus=()=>{}}) => {
 
     let uniqPatamTypes = [...new Set(status.map(i=>i.type))]
     let uniqPatamTypesText = [...new Set(status.map(i=>i.typeText))]
@@ -28,7 +28,7 @@ const Form = ({status, setStatus, sig}) => {
                                         item = {item}
                                         status = {status}
                                         setStatus = {setStatus}
-                                        sig={sig}
+        
                                         key={item.id}
                                     />
                                 )    

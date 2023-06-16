@@ -91,7 +91,7 @@ const Page = () => {
       
 
     useEffect(()=>{
-        if(performPaymentResponse.isSuccess && !performPaymentResponse ) {
+        if(performPaymentResponse.isSuccess && !performPaymentResponse.isUninitialized ) {
             console.log('data!',performPaymentResponse.data)
             if(performPaymentResponse.data.paystatus =="created") {
                 window.open(performPaymentResponse.data.url,'_blank');
