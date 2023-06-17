@@ -11,26 +11,19 @@ import md5 from 'md5'
 import PayBefore3DS from './PayBefore3DS/PayBefore3DS';
 import Do3DS from './Do3DS/Do3DS';
 import PayAfter3DS from './PayAfter3DS/PayAfter3DS';
-import Flow,{states} from '../Common/Flow/Flow';
+import Flow,{flowStates} from '../Common/Flow/Flow';
 
 let timerId
-
-let temp = {}
-
-console.log(states)
 
 const GateToGate = () => {
 
     const [paramsForPay, setParamsForPay] = useState(params)
-
-    const [flowParams, setFlowParams] = useState(states.newOrder)
-
     const [data3ds, setData3ds ] = useState({})
-
     const [paresRequest, paresResponse]                   = useLazyGetParesQuery();
     const [payBefore3dsRequest, payBefore3dsResponse]     = usePayMutation()
     const [payAfter3dsRequest, payAfter3dsResponse]       = usePayAfter3dsMutation()
 
+    const [flowParams, setFlowParams] = useState(flowStates.newOrder)
     // Проверка сохраненых данных в браузере
     useEffect(()=>{
 
@@ -38,37 +31,11 @@ const GateToGate = () => {
         let paresdata = JSON.parse(localStorage.getItem('paresResponse'));
 
        
-        if (data){
-            // console.log(data)
-            // setFlowParams(prev=>{
-
-            //     let temp = structuredClone(prev)
-                
-            //     temp.request.status='completed'
-            //     temp.responce.status='completed'
-            //     temp.choiceStatus.status='completed'
-               
-            //     if(data.data.pg_status=='error')  temp.error.status='completed'
-            //     if(data.data.pg_status=='ok')  {
-            //         temp.choiceIs3DSRequired.status='completed'
-            //         if('pg_3ds' in data.data){
-            //             if(data.data.pg_3ds == 0 ){
-            //                 temp.finalWithout3DS.status='completed'
-            //             }
-            //             if(data.data.pg_3ds == 1 ){
-            //                 temp.dataAfter3DS.status='completed'
-            //                 temp.requestAfter3DS.status='current'
-            //             }
-            //         }
-            //     }
-            //     // console.log('payBefore3dsResponse',payBefore3dsResponse)
-            //     // console.log(temp)
-            //     // console.log(payBefore3dsResponse)
-    
-            //     return temp
-            // })
-            setFlowParams(states.new)
-        }
+        // if (data){
+        //     console.log(data)
+            
+        //     // setFlowParams(flowStates.new)
+        // }
     },[])
 
     // Вычисление подписи
@@ -84,6 +51,19 @@ const GateToGate = () => {
         }
     },[paramsForPay])
     
+    // Прием запроса на платеж до 3DS
+    useEffect(()=>{       
+        if (!payBefore3dsResponse.isUninitialized, payBefore3dsResponse.isSuccess){
+            // setFlowParams(flowStates.\)
+            localStorage.setItem('payBefore3dsResponse', JSON.stringify(payBefore3dsResponse)); 
+        }
+
+        // // if (!payBefore3dsResponse.isUninitialized, payBefore3dsResponse.isSuccess){
+        // //     setData3ds({...payBefore3dsResponse.data}) 
+        // // }
+             
+    },[payBefore3dsResponse])
+
     // Приемщик парамтров 3DS
     useEffect(()=>{
         if (!paresResponse.isUninitialized && paresResponse.isSuccess && !paresResponse.isFetching) 
@@ -99,88 +79,14 @@ const GateToGate = () => {
         }   
     },[paresResponse])
 
-    useEffect(()=>{
-        // console.log(payBefore3dsResponse)
-        // console.log('payBefore3dsResponse',payBefore3dsResponse)
-        // if (!payBefore3dsResponse.isUninitialized, payBefore3dsResponse.isSuccess){
-        //     setFlowParams(prev=>{
-
-        //         let temp = structuredClone(prev)
-                
-        //         temp.request.status='completed'
-        //         temp.responce.status='completed'
-        //         temp.choiceStatus.status='completed'
-               
-        //         if(payBefore3dsResponse.data.pg_status=='error')  temp.error.status='completed'
-        //         if(payBefore3dsResponse.data.pg_status=='ok')  {
-        //             temp.choiceIs3DSRequired.status='completed'
-        //             if('pg_3ds' in payBefore3dsResponse.data){
-        //                 if(payBefore3dsResponse.data.pg_3ds == 0 ){
-        //                     temp.finalWithout3DS.status='completed'
-        //                 }
-        //                 if(payBefore3dsResponse.data.pg_3ds == 1 ){
-        //                     temp.dataAfter3DS.status='completed'
-        //                     temp.requestAfter3DS.status='current'
-        //                 }
-        //             }
-        //         }
-        //         // console.log('payBefore3dsResponse',payBefore3dsResponse)
-        //         console.log(temp)
-        //         console.log(payBefore3dsResponse)
-    
-        //         return temp
-        //     })
-        // }
-       
-        // let temp = JSON.parse(localStorage.getItem('payBefore3dsResponse'));
-
-
-        if (!payBefore3dsResponse.isUninitialized, payBefore3dsResponse.isSuccess){
-            // setFlowParams(prev=>{
-
-            //     let temp = structuredClone(prev)
-                
-            //     temp.request.status='completed'
-            //     temp.responce.status='completed'
-            //     temp.choiceStatus.status='completed'
-               
-            //     if(payBefore3dsResponse.data.pg_status=='error')  temp.error.status='completed'
-            //     if(payBefore3dsResponse.data.pg_status=='ok')  {
-            //         temp.choiceIs3DSRequired.status='completed'
-            //         if('pg_3ds' in payBefore3dsResponse.data){
-            //             if(payBefore3dsResponse.data.pg_3ds == 0 ){
-            //                 temp.finalWithout3DS.status='completed'
-            //             }
-            //             if(payBefore3dsResponse.data.pg_3ds == 1 ){
-            //                 temp.dataAfter3DS.status='completed'
-            //                 temp.requestAfter3DS.status='current'
-            //             }
-            //         }
-            //     }
-            //     // console.log('payBefore3dsResponse',payBefore3dsResponse)
-            //     // console.log(temp)
-            //     // console.log(payBefore3dsResponse)
-    
-            //     return temp
-            // })
-            setFlowParams('new order')
-        }
-
-        if (!payBefore3dsResponse.isUninitialized, payBefore3dsResponse.isSuccess){
-            localStorage.setItem('payBefore3dsResponse', JSON.stringify(payBefore3dsResponse)); 
-        }
-
-        // // if (!payBefore3dsResponse.isUninitialized, payBefore3dsResponse.isSuccess){
-        // //     setData3ds({...payBefore3dsResponse.data}) 
-        // // }
-             
-    },[payBefore3dsResponse])
+  
 
   
     const doPayBefore3DS = () => {
         let object = {}
 
         localStorage.removeItem("payBefore3dsResponse");
+        localStorage.removeItem("flowStatus");
 
         setFlowParams('new order')
 

@@ -17,14 +17,14 @@ const PayBefore3DS = ({paramsForPay, setParamsForPay, xml, doPayBefore3DS}) => {
                 setStatus={setParamsForPay} 
             />
             
-            <ScreenRequest 
+            {/* <ScreenRequest 
                 params = {
                     paramsForPay.filter(item=>item.checked).map((item)=>{
                         return({'name':item.inputID, 'data':item.data})
                     })
                     }
                 url = 'https://api.paybox.money/g2g/payment'
-                />
+                /> */}
                 
            
             <ScreenResponse                            

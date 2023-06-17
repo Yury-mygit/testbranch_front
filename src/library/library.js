@@ -37,9 +37,9 @@ const filter2 = (LoadableObject, name = '',field,filer='noooooo')=>{
    
     return field=='xml' ? defaultXML : filer
 }
+
 const filter = (LoadableObject,field,filer='noooooo')=>{
     
-
     let temp = JSON.parse(localStorage.getItem('payBefore3dsResponse'));
 
     if (!LoadableObject.isLoading && LoadableObject.isSuccess) {
