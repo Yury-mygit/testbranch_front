@@ -6,25 +6,8 @@ import Rhombus from './Rhombus/Rhombus';
 import Ivent from './Ivent/Ivent';
 
 
-let states = {
-    new : 'new order'
-}
 
-// let defaultStatus = {
-//     'data':                {'status':'notreached',   'text':'Данные'},
-//     'request':             {'status':'notreached','text':'Запрос'},
-//     'responce':            {'status':'notreached','text':'Ответ'},
-//     'choiceStatus':        {'status':'notreached','text':'pg_status=?'},
-//     'error':               {'status':'notreached','text':'Error','testBefore':"error"},
-//     'choiceIs3DSRequired': {'status':'notreached','text':'pg_3ds=?','testBefore':"ok"},
-//     'finalWithout3DS':     {'status':'notreached','text':'Данные'},
-//     'dataAfter3DS':        {'status':'notreached','text':'Данные'},
-//     'requestAfter3DS':     {'status':'notreached','text':'Данные'},
-//     'responceAfter3DS':    {'status':'notreached','text':'Данные'},
-//     'choicePaymentStatus': {'status':'notreached','text':'Данные'},
-//     'paymentFail':         {'status':'notreached','text':'Данные'},
-//     'paymentSuccess':      {'status':'notreached','text':'Данные'},
-// }
+
 
 let newOrder  =   {
         IvetnPayStart:              {id:0,    status:'current',      text:'Начало оплаты'},
@@ -44,7 +27,6 @@ let newOrder  =   {
         IventFail:                  {id:14,    status:'notreached',   text:'ошибка'},
         IventSuccess:               {id:15,    status:'notreached',   text:'Завершен успешно'},
 }
-
 
 let sendedNotReceivedOrder  =  {
         IvetnPayStart:              {id:0,    status:'completed',      text:'Начало оплаты'},
@@ -68,70 +50,193 @@ let sendedNotReceivedOrder  =  {
 
 let erroRreceivedBefore3DSOrder  = 
     {
-        'data':                {'status':'completed',   'text':'Данные'},
-        'request':             {'status':'completed',   'text':'Запрос'},
-        'responce':            {'status':'completed','text':'Ответ'},
-        'choiceStatus':        {'status':'completed','text':'pg_status=?'},
-        'error':               {'status':'current','text':'Error','testBefore':"error"},
-        'choiceIs3DSRequired': {'status':'notreached','text':'pg_3ds=?','testBefore':"ok"},
-        'finalWithout3DS':     {'status':'notreached','text':'Данные'},
-        'dataAfter3DS':        {'status':'notreached','text':'Данные'},
-        'requestAfter3DS':     {'status':'notreached','text':'Данные'},
-        'responceAfter3DS':    {'status':'notreached','text':'Данные'},
-        'choicePaymentStatus': {'status':'notreached','text':'Данные'},
-        'paymentFail':         {'status':'notreached','text':'Данные'},
-        'paymentSuccess':      {'status':'notreached','text':'Данные'}, 
+        IvetnPayStart:              {id:0,    status:'completed',    text:'Начало оплаты'},
+        requestB3DS:                {id:1,    status:'completed',      text:'Запрос'},
+        responceB3DS:               {id:2,    status:'completed',   text:'Ответ'},
+        choiceStatusB3DS:           {id:3,    status:'completed',   text:'pg_status=?'},
+        errorB3DS:                  {id:4,    status:'error',   text:'ошибка','testBefore':"error"},
+        choiceIs3DSRequired:        {id:5,    status:'notreached',   text:'pg_3ds=?','testBefore':"ok"},
+        successFinalWithout3DS:     {id:6,    status:'notreached',   text:'Завершен успешно'},
+        requestUserTo3ds:           {id:7,    status:'notreached',   text:'Отправка на 3DS'},
+        waitingForParesMd:          {id:8,    status:'notreached',   text:'Ожи-ние pares/md'},
+        choiceParesMd:              {id:9,    status:'notreached',   text:'pares/md?'},
+        errorNotReceivedParesMd:    {id:10,    status:'notreached',   text:'Ошибка платежа'},
+        requestA3DS:                {id:11,    status:'notreached',   text:'Отправка запроса'},
+        responceA3DS:               {id:12,    status:'notreached',   text:'Получение ответа'},
+        choiceA3DS:                 {id:13,    status:'notreached',   text:'Платеж успешный?'},        
+        IventFail:                  {id:14,    status:'notreached',   text:'ошибка'},
+        IventSuccess:               {id:15,    status:'notreached',   text:'Завершен успешно'},
 }
 
 let complitedWithout3DSOrder  = 
     {
-        'data':                {'status':'completed',   'text':'Данные'},
-        'request':             {'status':'completed',   'text':'Запрос'},
-        'responce':            {'status':'completed',   'text':'Ответ'},
-        'choiceStatus':        {'status':'completed',   'text':'pg_status=?'},
-        'error':               {'status':'notreached',  'text':'Error','testBefore':"error"},
-        'choiceIs3DSRequired': {'status':'completed',   'text':'pg_3ds=?','testBefore':"ok"},
-        'finalWithout3DS':     {'status':'current',     'text':'Данные'},
-        'dataAfter3DS':        {'status':'notreached','text':'Данные'},
-        'requestAfter3DS':     {'status':'notreached','text':'Данные'},
-        'responceAfter3DS':    {'status':'notreached','text':'Данные'},
-        'choicePaymentStatus': {'status':'notreached','text':'Данные'},
-        'paymentFail':         {'status':'notreached','text':'Данные'},
-        'paymentSuccess':      {'status':'notreached','text':'Данные'}, 
+        IvetnPayStart:              {id:0,    status:'completed',    text:'Начало оплаты'},
+        requestB3DS:                {id:1,    status:'completed',      text:'Запрос'},
+        responceB3DS:               {id:2,    status:'completed',   text:'Ответ'},
+        choiceStatusB3DS:           {id:3,    status:'completed',   text:'pg_status=?'},
+        errorB3DS:                  {id:4,    status:'notreached',   text:'ошибка','testBefore':"error"},
+        choiceIs3DSRequired:        {id:5,    status:'completed',   text:'pg_3ds=?','testBefore':"ok"},
+        successFinalWithout3DS:     {id:6,    status:'current',   text:'Завершен успешно'},
+        requestUserTo3ds:           {id:7,    status:'notreached',   text:'Отправка на 3DS'},
+        waitingForParesMd:          {id:8,    status:'notreached',   text:'Ожи-ние pares/md'},
+        choiceParesMd:              {id:9,    status:'notreached',   text:'pares/md?'},
+        errorNotReceivedParesMd:    {id:10,    status:'notreached',   text:'Ошибка платежа'},
+        requestA3DS:                {id:11,    status:'notreached',   text:'Отправка запроса'},
+        responceA3DS:               {id:12,    status:'notreached',   text:'Получение ответа'},
+        choiceA3DS:                 {id:13,    status:'notreached',   text:'Платеж успешный?'},        
+        IventFail:                  {id:14,    status:'notreached',   text:'ошибка'},
+        IventSuccess:               {id:15,    status:'notreached',   text:'Завершен успешно'}, 
 }
 
 let dataFor3DSOrder  = 
     {
-        'data':                {'status':'completed',   'text':'Данные'},
-        'request':             {'status':'completed',   'text':'Запрос'},
-        'responce':            {'status':'completed',   'text':'Ответ'},
-        'choiceStatus':        {'status':'completed',   'text':'pg_status=?'},
-        'error':               {'status':'notreached',  'text':'Error','testBefore':"error"},
-        'choiceIs3DSRequired': {'status':'completed',   'text':'pg_3ds=?','testBefore':"ok"},
-        'finalWithout3DS':     {'status':'completed',     'text':'Данные'},
-        'dataAfter3DS':        {'status':'current','text':'Данные'},
-        'requestAfter3DS':     {'status':'notreached','text':'Данные'},
-        'responceAfter3DS':    {'status':'notreached','text':'Данные'},
-        'choicePaymentStatus': {'status':'notreached','text':'Данные'},
-        'paymentFail':         {'status':'notreached','text':'Данные'},
-        'paymentSuccess':      {'status':'notreached','text':'Данные'}, 
+        IvetnPayStart:              {id:0,    status:'completed',    text:'Начало оплаты'},
+        requestB3DS:                {id:1,    status:'completed',      text:'Запрос'},
+        responceB3DS:               {id:2,    status:'completed',   text:'Ответ'},
+        choiceStatusB3DS:           {id:3,    status:'completed',   text:'pg_status=?'},
+        errorB3DS:                  {id:4,    status:'notreached',   text:'ошибка','testBefore':"error"},
+        choiceIs3DSRequired:        {id:5,    status:'completed',   text:'pg_3ds=?','testBefore':"ok"},
+        successFinalWithout3DS:     {id:6,    status:'notreached',   text:'Завершен успешно'},
+        requestUserTo3ds:           {id:7,    status:'current',   text:'Отправка на 3DS'},
+        waitingForParesMd:          {id:8,    status:'notreached',   text:'Ожи-ние pares/md'},
+        choiceParesMd:              {id:9,    status:'notreached',   text:'pares/md?'},
+        errorNotReceivedParesMd:    {id:10,    status:'notreached',   text:'Ошибка платежа'},
+        requestA3DS:                {id:11,    status:'notreached',   text:'Отправка запроса'},
+        responceA3DS:               {id:12,    status:'notreached',   text:'Получение ответа'},
+        choiceA3DS:                 {id:13,    status:'notreached',   text:'Платеж успешный?'},        
+        IventFail:                  {id:14,    status:'notreached',   text:'ошибка'},
+        IventSuccess:               {id:15,    status:'notreached',   text:'Завершен успешно'}, 
 }
 
-let daаtaFor3DSOrder  = 
+let waitingForParesMd  = 
     {
-        'data':                {'status':'completed',   'text':'Данные'},
-        'request':             {'status':'completed',   'text':'Запрос'},
-        'responce':            {'status':'completed',   'text':'Ответ'},
-        'choiceStatus':        {'status':'completed',   'text':'pg_status=?'},
-        'error':               {'status':'notreached',  'text':'Error','testBefore':"error"},
-        'choiceIs3DSRequired': {'status':'completed',   'text':'pg_3ds=?','testBefore':"ok"},
-        'finalWithout3DS':     {'status':'completed',     'text':'Данные'},
-        'dataAfter3DS':        {'status':'current','text':'Данные'},
-        'requestAfter3DS':     {'status':'notreached','text':'Данные'},
-        'responceAfter3DS':    {'status':'notreached','text':'Данные'},
-        'choicePaymentStatus': {'status':'notreached','text':'Данные'},
-        'paymentFail':         {'status':'notreached','text':'Данные'},
-        'paymentSuccess':      {'status':'notreached','text':'Данные'}, 
+        IvetnPayStart:              {id:0,    status:'completed',    text:'Начало оплаты'},
+        requestB3DS:                {id:1,    status:'completed',      text:'Запрос'},
+        responceB3DS:               {id:2,    status:'completed',   text:'Ответ'},
+        choiceStatusB3DS:           {id:3,    status:'completed',   text:'pg_status=?'},
+        errorB3DS:                  {id:4,    status:'notreached',   text:'ошибка','testBefore':"error"},
+        choiceIs3DSRequired:        {id:5,    status:'completed',   text:'pg_3ds=?','testBefore':"ok"},
+        successFinalWithout3DS:     {id:6,    status:'notreached',   text:'Завершен успешно'},
+        requestUserTo3ds:           {id:7,    status:'completed',   text:'Отправка на 3DS'},
+        waitingForParesMd:          {id:8,    status:'current',   text:'Ожи-ние pares/md'},
+        choiceParesMd:              {id:9,    status:'notreached',   text:'pares/md?'},
+        errorNotReceivedParesMd:    {id:10,    status:'notreached',   text:'Ошибка платежа'},
+        requestA3DS:                {id:11,    status:'notreached',   text:'Отправка запроса'},
+        responceA3DS:               {id:12,    status:'notreached',   text:'Получение ответа'},
+        choiceA3DS:                 {id:13,    status:'notreached',   text:'Платеж успешный?'},        
+        IventFail:                  {id:14,    status:'notreached',   text:'ошибка'},
+        IventSuccess:               {id:15,    status:'notreached',   text:'Завершен успешно'},  
+}
+
+let errorNotReceivedParesMd  = 
+    {
+        IvetnPayStart:              {id:0,    status:'completed',    text:'Начало оплаты'},
+        requestB3DS:                {id:1,    status:'completed',      text:'Запрос'},
+        responceB3DS:               {id:2,    status:'completed',   text:'Ответ'},
+        choiceStatusB3DS:           {id:3,    status:'completed',   text:'pg_status=?'},
+        errorB3DS:                  {id:4,    status:'notreached',   text:'ошибка','testBefore':"error"},
+        choiceIs3DSRequired:        {id:5,    status:'completed',   text:'pg_3ds=?','testBefore':"ok"},
+        successFinalWithout3DS:     {id:6,    status:'notreached',   text:'Завершен успешно'},
+        requestUserTo3ds:           {id:7,    status:'completed',   text:'Отправка на 3DS'},
+        waitingForParesMd:          {id:8,    status:'completed',   text:'Ожи-ние pares/md'},
+        choiceParesMd:              {id:9,    status:'completed',   text:'pares/md?'},
+        errorNotReceivedParesMd:    {id:10,    status:'error',   text:'Ошибка платежа'},
+        requestA3DS:                {id:11,    status:'notreached',   text:'Отправка запроса'},
+        responceA3DS:               {id:12,    status:'notreached',   text:'Получение ответа'},
+        choiceA3DS:                 {id:13,    status:'notreached',   text:'Платеж успешный?'},        
+        IventFail:                  {id:14,    status:'notreached',   text:'ошибка'},
+        IventSuccess:               {id:15,    status:'notreached',   text:'Завершен успешно'},  
+}
+let requestA3DS  = 
+    {
+        IvetnPayStart:              {id:0,    status:'completed',    text:'Начало оплаты'},
+        requestB3DS:                {id:1,    status:'completed',      text:'Запрос'},
+        responceB3DS:               {id:2,    status:'completed',   text:'Ответ'},
+        choiceStatusB3DS:           {id:3,    status:'completed',   text:'pg_status=?'},
+        errorB3DS:                  {id:4,    status:'notreached',   text:'ошибка','testBefore':"error"},
+        choiceIs3DSRequired:        {id:5,    status:'completed',   text:'pg_3ds=?','testBefore':"ok"},
+        successFinalWithout3DS:     {id:6,    status:'notreached',   text:'Завершен успешно'},
+        requestUserTo3ds:           {id:7,    status:'completed',   text:'Отправка на 3DS'},
+        waitingForParesMd:          {id:8,    status:'completed',   text:'Ожи-ние pares/md'},
+        choiceParesMd:              {id:9,    status:'completed',   text:'pares/md?'},
+        errorNotReceivedParesMd:    {id:10,    status:'notreached',   text:'Ошибка платежа'},
+        requestA3DS:                {id:11,    status:'current',   text:'Отправка запроса'},
+        responceA3DS:               {id:12,    status:'notreached',   text:'Получение ответа'},
+        choiceA3DS:                 {id:13,    status:'notreached',   text:'Платеж успешный?'},        
+        IventFail:                  {id:14,    status:'notreached',   text:'ошибка'},
+        IventSuccess:               {id:15,    status:'notreached',   text:'Завершен успешно'},  
+}
+let responceA3DS  = 
+    {
+        IvetnPayStart:              {id:0,    status:'completed',    text:'Начало оплаты'},
+        requestB3DS:                {id:1,    status:'completed',      text:'Запрос'},
+        responceB3DS:               {id:2,    status:'completed',   text:'Ответ'},
+        choiceStatusB3DS:           {id:3,    status:'completed',   text:'pg_status=?'},
+        errorB3DS:                  {id:4,    status:'notreached',   text:'ошибка','testBefore':"error"},
+        choiceIs3DSRequired:        {id:5,    status:'completed',   text:'pg_3ds=?','testBefore':"ok"},
+        successFinalWithout3DS:     {id:6,    status:'notreached',   text:'Завершен успешно'},
+        requestUserTo3ds:           {id:7,    status:'completed',   text:'Отправка на 3DS'},
+        waitingForParesMd:          {id:8,    status:'completed',   text:'Ожи-ние pares/md'},
+        choiceParesMd:              {id:9,    status:'completed',   text:'pares/md?'},
+        errorNotReceivedParesMd:    {id:10,    status:'notreached',   text:'Ошибка платежа'},
+        requestA3DS:                {id:11,    status:'completed',   text:'Отправка запроса'},
+        responceA3DS:               {id:12,    status:'current',   text:'Получение ответа'},
+        choiceA3DS:                 {id:13,    status:'notreached',   text:'Платеж успешный?'},        
+        IventFail:                  {id:14,    status:'notreached',   text:'ошибка'},
+        IventSuccess:               {id:15,    status:'notreached',   text:'Завершен успешно'},  
+}
+let finishFail  = 
+    {
+        IvetnPayStart:              {id:0,    status:'completed',    text:'Начало оплаты'},
+        requestB3DS:                {id:1,    status:'completed',      text:'Запрос'},
+        responceB3DS:               {id:2,    status:'completed',   text:'Ответ'},
+        choiceStatusB3DS:           {id:3,    status:'completed',   text:'pg_status=?'},
+        errorB3DS:                  {id:4,    status:'notreached',   text:'ошибка','testBefore':"error"},
+        choiceIs3DSRequired:        {id:5,    status:'completed',   text:'pg_3ds=?','testBefore':"ok"},
+        successFinalWithout3DS:     {id:6,    status:'notreached',   text:'Завершен успешно'},
+        requestUserTo3ds:           {id:7,    status:'completed',   text:'Отправка на 3DS'},
+        waitingForParesMd:          {id:8,    status:'completed',   text:'Ожи-ние pares/md'},
+        choiceParesMd:              {id:9,    status:'completed',   text:'pares/md?'},
+        errorNotReceivedParesMd:    {id:10,    status:'notreached',   text:'Ошибка платежа'},
+        requestA3DS:                {id:11,    status:'completed',   text:'Отправка запроса'},
+        responceA3DS:               {id:12,    status:'completed',   text:'Получение ответа'},
+        choiceA3DS:                 {id:13,    status:'completed',   text:'Платеж успешный?'},        
+        IventFail:                  {id:14,    status:'error',   text:'ошибка'},
+        IventSuccess:               {id:15,    status:'notreached',   text:'Завершен успешно'},  
+}
+let finishSuccess  = 
+    {
+        IvetnPayStart:              {id:0,    status:'completed',    text:'Начало оплаты'},
+        requestB3DS:                {id:1,    status:'completed',      text:'Запрос'},
+        responceB3DS:               {id:2,    status:'completed',   text:'Ответ'},
+        choiceStatusB3DS:           {id:3,    status:'completed',   text:'pg_status=?'},
+        errorB3DS:                  {id:4,    status:'notreached',   text:'ошибка','testBefore':"error"},
+        choiceIs3DSRequired:        {id:5,    status:'completed',   text:'pg_3ds=?','testBefore':"ok"},
+        successFinalWithout3DS:     {id:6,    status:'notreached',   text:'Завершен успешно'},
+        requestUserTo3ds:           {id:7,    status:'completed',   text:'Отправка на 3DS'},
+        waitingForParesMd:          {id:8,    status:'completed',   text:'Ожи-ние pares/md'},
+        choiceParesMd:              {id:9,    status:'completed',   text:'pares/md?'},
+        errorNotReceivedParesMd:    {id:10,    status:'notreached',   text:'Ошибка платежа'},
+        requestA3DS:                {id:11,    status:'completed',   text:'Отправка запроса'},
+        responceA3DS:               {id:12,    status:'completed',   text:'Получение ответа'},
+        choiceA3DS:                 {id:13,    status:'completed',   text:'Платеж успешный?'},        
+        IventFail:                  {id:14,    status:'notreached',   text:'ошибка'},
+        IventSuccess:               {id:15,    status:'current',   text:'Завершен успешно'},  
+}
+
+let states = {
+    newOrder:                     'newOrder', 
+    sendedNotReceivedOrder:       'sendedNotReceivedOrder', 
+    erroRreceivedBefore3DSOrder:  'erroRreceivedBefore3DSOrder', 
+    complitedWithout3DSOrder:     'complitedWithout3DSOrder', 
+    dataFor3DSOrder: 'dataFor3DSOrder', 
+    waitingForParesMd: 'waitingForParesMd', 
+    errorNotReceivedParesMd: 'errorNotReceivedParesMd', 
+    requestA3DS: 'requestA3DS', 
+    responceA3DS: 'responceA3DS', 
+    finishFail: 'finishFail', 
+    finishSuccess: 'finishSuccess', 
+    
 }
 
 
@@ -143,7 +248,7 @@ const Flow = ({status}) => {
 
     if (status=='new order') params = newOrder
 
-    params = sendedNotReceivedOrder
+    // params = finishSuccess
 
     return (
         <div className={cl.wrapper}>

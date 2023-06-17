@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import {server} from '../settings'
 
 // http://testbench/api/greeting
 export const paymentApi = createApi({
     reducerPath: 'paymentApi',
-    baseQuery: fetchBaseQuery({ baseUrl: "https://acee-176-115-195-130.ngrok-free.app/api",   
+    baseQuery: fetchBaseQuery({ baseUrl: `${server}`,   
     prepareHeaders: (headers) => {
         headers.set('Access-Control-Allow-Origin', '*');
         headers.set("Content-Type", "application/json");

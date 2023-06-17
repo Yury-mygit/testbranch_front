@@ -17,11 +17,13 @@ let timerId
 
 let temp = {}
 
+console.log(states)
+
 const GateToGate = () => {
 
     const [paramsForPay, setParamsForPay] = useState(params)
 
-    const [flowParams, setFlowParams] = useState('new order')
+    const [flowParams, setFlowParams] = useState(states.newOrder)
 
     const [data3ds, setData3ds ] = useState({})
 
@@ -29,6 +31,47 @@ const GateToGate = () => {
     const [payBefore3dsRequest, payBefore3dsResponse]     = usePayMutation()
     const [payAfter3dsRequest, payAfter3dsResponse]       = usePayAfter3dsMutation()
 
+    // Проверка сохраненых данных в браузере
+    useEffect(()=>{
+
+        let data = JSON.parse(localStorage.getItem('payBefore3dsResponse'));
+        let paresdata = JSON.parse(localStorage.getItem('paresResponse'));
+
+       
+        if (data){
+            // console.log(data)
+            // setFlowParams(prev=>{
+
+            //     let temp = structuredClone(prev)
+                
+            //     temp.request.status='completed'
+            //     temp.responce.status='completed'
+            //     temp.choiceStatus.status='completed'
+               
+            //     if(data.data.pg_status=='error')  temp.error.status='completed'
+            //     if(data.data.pg_status=='ok')  {
+            //         temp.choiceIs3DSRequired.status='completed'
+            //         if('pg_3ds' in data.data){
+            //             if(data.data.pg_3ds == 0 ){
+            //                 temp.finalWithout3DS.status='completed'
+            //             }
+            //             if(data.data.pg_3ds == 1 ){
+            //                 temp.dataAfter3DS.status='completed'
+            //                 temp.requestAfter3DS.status='current'
+            //             }
+            //         }
+            //     }
+            //     // console.log('payBefore3dsResponse',payBefore3dsResponse)
+            //     // console.log(temp)
+            //     // console.log(payBefore3dsResponse)
+    
+            //     return temp
+            // })
+            setFlowParams(states.new)
+        }
+    },[])
+
+    // Вычисление подписи
     useEffect(()=>{
         let c = structuredClone(paramsForPay)
         let ob = paramsForPay.find((value) => {return value.inputID=='pg_signature'})
@@ -41,8 +84,8 @@ const GateToGate = () => {
         }
     },[paramsForPay])
     
+    // Приемщик парамтров 3DS
     useEffect(()=>{
-
         if (!paresResponse.isUninitialized && paresResponse.isSuccess && !paresResponse.isFetching) 
         {
             if (paresResponse.data.pares!='no data')
@@ -53,8 +96,7 @@ const GateToGate = () => {
                     localStorage.setItem('paresResponse', JSON.stringify(payBefore3dsResponse)); 
                 }
             console.log(paresResponse)
-        }
-    
+        }   
     },[paresResponse])
 
     useEffect(()=>{
@@ -134,45 +176,7 @@ const GateToGate = () => {
              
     },[payBefore3dsResponse])
 
-    useEffect(()=>{
-
-        let data = JSON.parse(localStorage.getItem('payBefore3dsResponse'));
-        let paresdata = JSON.parse(localStorage.getItem('paresResponse'));
-
-       
-        if (data){
-            // console.log(data)
-            // setFlowParams(prev=>{
-
-            //     let temp = structuredClone(prev)
-                
-            //     temp.request.status='completed'
-            //     temp.responce.status='completed'
-            //     temp.choiceStatus.status='completed'
-               
-            //     if(data.data.pg_status=='error')  temp.error.status='completed'
-            //     if(data.data.pg_status=='ok')  {
-            //         temp.choiceIs3DSRequired.status='completed'
-            //         if('pg_3ds' in data.data){
-            //             if(data.data.pg_3ds == 0 ){
-            //                 temp.finalWithout3DS.status='completed'
-            //             }
-            //             if(data.data.pg_3ds == 1 ){
-            //                 temp.dataAfter3DS.status='completed'
-            //                 temp.requestAfter3DS.status='current'
-            //             }
-            //         }
-            //     }
-            //     // console.log('payBefore3dsResponse',payBefore3dsResponse)
-            //     // console.log(temp)
-            //     // console.log(payBefore3dsResponse)
-    
-            //     return temp
-            // })
-            setFlowParams(states.new)
-        }
-    },[])
-
+  
     const doPayBefore3DS = () => {
         let object = {}
 
@@ -202,9 +206,7 @@ const GateToGate = () => {
         // })
     }
 
-    const sendUserTo3DS = ()=>{
-        
-        
+    const sendUserTo3DS = ()=>{       
         timerId = setInterval(() => {
    
             paresRequest(payBefore3dsResponse.data.paument_number)
@@ -214,8 +216,6 @@ const GateToGate = () => {
             }, 3000);  
 
         window.open("https://8c98-46-39-54-110.ngrok-free.app/api/g2g/perform3ds?id="+payBefore3dsResponse.data.paument_number, '_blank');
-        // window.location.href = "https://8c98-46-39-54-110.ngrok-free.app/api/g2g/perform3ds?id=" + payBefore3dsResponse.data.paument_number;
-    
     }
     
     const sigPayBefore3DS = () => {
@@ -269,7 +269,7 @@ const GateToGate = () => {
         // })
     }
 
-    let xmlview = filter(payBefore3dsResponse,'xml')
+    // let xmlview = filter(payBefore3dsResponse,'xml')
     // console.log(xmlview)
 
     return (
