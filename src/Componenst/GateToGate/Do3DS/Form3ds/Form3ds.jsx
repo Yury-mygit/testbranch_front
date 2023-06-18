@@ -17,7 +17,7 @@ const Form3ds = ({params,url,sendUserTo3DS}) => {
                 <p className={cl.gap}> {'<input type="submit" value="send"/>'}<br /></p>
                 <p className={cl.nogap}> {'</form>'}<br /></p>
             </div>
-            <form name="SendOrder" onSubmit={(e)=>{ e.preventDefault, e.stopPropagation; sendUserTo3DS()}}>
+            <form name="SendOrder" onSubmit={(e)=>{ e.preventDefault(), e.stopPropagation(); sendUserTo3DS()}}>
                 <label><div>MD =</div><input type="text" name="MD" value={params.md} onChange={()=>{}}/></label>
                 <label><div>PaReq =</div><input type="text" name="PaReq" value={params.pg_3d_pareq} onChange={()=>{}}/></label>
                 <label><div>TermUrl =</div><input type="text" name="TermUrl" value={params.TermUrl} onChange={()=>{}}/></label>

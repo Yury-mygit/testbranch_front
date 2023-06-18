@@ -38,6 +38,7 @@ const PayBefore3DS = ({paramsForPay, setParamsForPay, xml, doPayBefore3DS}) => {
             onClick={()=>doPayBefore3DS()}
             >Отправить первичный запрос на проведение платежа
             </button>
+           
             
         
 

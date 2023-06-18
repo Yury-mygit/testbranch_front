@@ -38,25 +38,103 @@ const filter2 = (LoadableObject, name = '',field,filer='noooooo')=>{
     return field=='xml' ? defaultXML : filer
 }
 
-const filter = (LoadableObject,field,filer='noooooo')=>{
-    
-    let temp = JSON.parse(localStorage.getItem('payBefore3dsResponse'));
 
-    if (!LoadableObject.isLoading && LoadableObject.isSuccess) {
-       
-        if (field=='xml') return LoadableObject.data[field]
-        return LoadableObject.data[field]
+// const filter = (LoadableObject, field, filer='noooooo')=>{
+
+//     // console.log(LoadableObject)
+//     // console.log(JSON.parse(localStorage.getItem('payBefore3dsResponse')))
+
+//     if (!LoadableObject.isLoading && LoadableObject.isSuccess) {     
+//         if (field=='xml') return LoadableObject.data[field]
+//         return LoadableObject.data[field]
+//     }
+
+//     if (JSON.parse(localStorage.getItem('payBefore3dsResponse'))!=null){
+//         return( JSON.parse(localStorage.getItem('payBefore3dsResponse')).data[field])
+//     }  
+//     if (field=='xml') {return defaultXML}
+
+//     return filer
+// }
+
+const filter = (LoadableObject, field, filer = "noooooo") => {
+  
+    // Check if the field is available on the top level of LoadableObject.data
+    if (
+      !LoadableObject.isLoading &&
+      LoadableObject.isSuccess &&
+      LoadableObject.data.hasOwnProperty(field)
+    ) {
+      if (field === "xml") return LoadableObject.data[field];
+      return LoadableObject.data[field];
     }
-
-    if (temp!=null){
-        return( temp.data[field])
+  
+    // Check if the field is available on deeper levels of LoadableObject.data
+    if (
+      !LoadableObject.isLoading &&
+      LoadableObject.isSuccess &&
+      typeof LoadableObject.data === "object" &&
+      LoadableObject.data !== null
+    ) {
+      let nestedField = findNestedField(LoadableObject.data, field);
+      if (nestedField !== null) {
+        if (field === "xml") return nestedField.xml;
+        return nestedField;
+      }
     }
-    // console.log('sdsadsda', temp)
-   
-    if (field=='xml') {return defaultXML}
+  
+    // Check if the field is available on the top level of localStorageItem.data
+    let localStorageItem = JSON.parse(
+      localStorage.getItem("payBefore3dsResponse")
+    );
+    if (
+      localStorageItem !== null &&
+      localStorageItem.hasOwnProperty("data") &&
+      localStorageItem.data.hasOwnProperty(field)
+    ) {
+      if (field === "xml") return localStorageItem.data[field];
+      return localStorageItem.data[field];
+    }
+  
+    // Check if the field is available on deeper levels of localStorageItem.data
+    if (
+      typeof localStorageItem === "object" &&
+      localStorageItem !== null &&
+      localStorageItem.hasOwnProperty("data")
+    ) {
+      let nestedField = findNestedField(localStorageItem.data, field);
+      if (nestedField !== null) {
+        if (field === "xml") return nestedField.xml;
+        return nestedField;
+      }
+    }
+  
+    // Return default value if the field is not available
+    if (field === "xml") {
+      return defaultXML;
+    }
+  
+    return filer;
+  };
+  
+  function findNestedField(obj, field) {
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        if (key === field) {
+          return obj[key];
+        }
+        if (typeof obj[key] === "object" && obj[key] !== null) {
+          let nestedField = findNestedField(obj[key], field);
+          if (nestedField !== null) {
+            return nestedField;
+          }
+        }
+      }
+    }
+    return null;
+  }
 
-    return filer
-}
+
 
 
 const params = [
@@ -84,4 +162,11 @@ const params = [
     {id:32, type:'merchantData', typeText:'Данные мерчанта' ,checked:true, isDisabled:true,  inputID: 'pg_result_url', labelText:'Адрес ответа', data:'https://416b-46-39-54-23.ngrok-free.app/api/g2g/result'},
 ]
 
-export {doXMLView, defaultXML, filter,params, mdCheck, pareqCheck}
+const clearLocalStorage = (params={}) =>{
+    localStorage.removeItem("payBefore3dsResponse");
+    localStorage.removeItem("flowStatus");
+}
+
+export {doXMLView, defaultXML, filter,params, mdCheck, pareqCheck, clearLocalStorage}
+
+
