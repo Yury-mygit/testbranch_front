@@ -57,82 +57,46 @@ const filter2 = (LoadableObject, name = '',field,filer='noooooo')=>{
 //     return filer
 // }
 
-const filter = (LoadableObject, field, filer = "noooooo") => {
+const checkStatus = (obj) =>{
+    if (typeof obj !=='object' || obj ==null) return false
+    return !obj.isLoading && obj.isSuccess ? true : false           
+}
+
+const adapter = (LoadableObject, field, filer = "<noooooo") => {
   
-    // Check if the field is available on the top level of LoadableObject.data
-    if (
-      !LoadableObject.isLoading &&
-      LoadableObject.isSuccess &&
-      LoadableObject.data.hasOwnProperty(field)
-    ) {
-      if (field === "xml") return LoadableObject.data[field];
-      return LoadableObject.data[field];
+    if (typeof field == 'string') field = [field]
+
+    let storageObj = JSON.parse(localStorage.getItem("payBefore3dsResponse"))
+
+    let data 
+
+    if (checkStatus(LoadableObject)) {
+        data=iterator(LoadableObject, field)
+        if (data!=undefined) return data
+        else return defaultXML 
     }
-  
-    // Check if the field is available on deeper levels of LoadableObject.data
-    if (
-      !LoadableObject.isLoading &&
-      LoadableObject.isSuccess &&
-      typeof LoadableObject.data === "object" &&
-      LoadableObject.data !== null
-    ) {
-      let nestedField = findNestedField(LoadableObject.data, field);
-      if (nestedField !== null) {
-        if (field === "xml") return nestedField.xml;
-        return nestedField;
-      }
+    if (checkStatus(storageObj)) {
+        data=iterator(storageObj, field) 
+        if (data!=undefined) return data 
+        else return defaultXML
     }
-  
-    // Check if the field is available on the top level of localStorageItem.data
-    let localStorageItem = JSON.parse(
-      localStorage.getItem("payBefore3dsResponse")
-    );
-    if (
-      localStorageItem !== null &&
-      localStorageItem.hasOwnProperty("data") &&
-      localStorageItem.data.hasOwnProperty(field)
-    ) {
-      if (field === "xml") return localStorageItem.data[field];
-      return localStorageItem.data[field];
-    }
-  
-    // Check if the field is available on deeper levels of localStorageItem.data
-    if (
-      typeof localStorageItem === "object" &&
-      localStorageItem !== null &&
-      localStorageItem.hasOwnProperty("data")
-    ) {
-      let nestedField = findNestedField(localStorageItem.data, field);
-      if (nestedField !== null) {
-        if (field === "xml") return nestedField.xml;
-        return nestedField;
-      }
-    }
-  
-    // Return default value if the field is not available
-    if (field === "xml") {
-      return defaultXML;
-    }
-  
-    return filer;
+
+    return defaultXML
+   
   };
   
-  function findNestedField(obj, field) {
-    for (let key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        if (key === field) {
-          return obj[key];
-        }
-        if (typeof obj[key] === "object" && obj[key] !== null) {
-          let nestedField = findNestedField(obj[key], field);
-          if (nestedField !== null) {
-            return nestedField;
-          }
-        }
-      }
+const iterator = (LoadableObject, field) => {
+
+    if (!LoadableObject.hasOwnProperty(field[0])) return undefined
+
+    if (field.length>1) {
+        let temp = structuredClone(field)
+        temp.shift()
+        return iterator(LoadableObject[field[0]],temp )
     }
-    return null;
-  }
+   
+    return LoadableObject[field[0]]
+}
 
 
 
@@ -167,6 +131,6 @@ const clearLocalStorage = (params={}) =>{
     localStorage.removeItem("flowStatus");
 }
 
-export {doXMLView, defaultXML, filter,params, mdCheck, pareqCheck, clearLocalStorage}
+export {doXMLView, defaultXML, adapter,params, mdCheck, pareqCheck, clearLocalStorage}
 
 

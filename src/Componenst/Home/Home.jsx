@@ -105,7 +105,7 @@ Object.defineProperty(Object.prototype, 'makeFlatArray', {
             return array
         }
         
-        return  culc(this)
+        return  culc(this.data)
     },
     enumerable: false,
     writable: true,

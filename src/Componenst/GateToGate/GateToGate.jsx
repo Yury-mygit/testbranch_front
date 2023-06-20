@@ -1,5 +1,65 @@
+// Структуры файлов
+// payBefore3dsRequest {
+//     endpointName: "pay"
+//     isError: false
+//     isLoading: true
+//     isSuccess: false
+//     isUninitialized: false
+//     originalArgs: {pg_card_pan: '2200150543546300', pg_card_year: '29', pg_card_month: '05', pg_card_cvc: '243', pg_card_name: 'YURIY', …}
+//     requestId: "De_F-0YswlaU0Zm3SbBqR"
+//     reset: ƒ ()
+//     startedTimeStamp: 1687070466206
+//     status: "pending"
+// }
+
+// payBefore3dsRequest {
+//    data: 
+//     TermUrl: "https://8c98-46-39-54-110.ngrok-free.app/api/g2g/result3ds/100021"
+//     paument_number: 100021
+//     pg_3d_acsurl: "https://secure.paybox.money/v2/user/3ds-page/24d466a5-55c8-4060-8f73-c4ef11b1de06"
+//     pg_3d_md: ""
+//     pg_3d_pareq: "eJydkU2PmzAQhv8L5yWYjyQQKVq1Ih9EmGwIgZhLZYwTTDAgMEmg6n8vUQ/dw6qHniyN5xm988xPSTxLJ5UWkmaYOpiBuWWCKZDeJNbqdqutCnZlSUGlhWg6+ibVTSUqUhUhbVpWlS9uok5e/SJrKLWPR9rcaRM0uGwde/w2zDnVganKs+mFyIapXuREnSeyOtMNk5CEppr+l4Z UZFV68t2RzISo24Wi6Gkrp6064awhVVlSIiZNp3D8XuMG8yXe+oBs4cztrQzpsEPRk6NolyW87Uh5uqPIG1xt/cBHc4i3sHd1vyI8LPy158Vnv0q0w/KLAH/2+BSjxj2npZDHOBNScQXXTLmrCinYWFWuWGS0ef9KwvJ/FNhY4A9MbvR1GtrvAN7uivjkB0EUAryxbgG3AI7iGmnr8bW6MNxBJ6/YJx0PdC5EHE2BG3g30k/zRAN3dP5euzp6jkpy0ltdovt1zIscnf060Ywf6Sbr4yhcnVSvIGVckMLvUTQdjqeD5dlXPQ7gY2+vhJeHHPUA7O01dyPn6WmOgAEaPDvLkTZmtZ3BYQ/2j3lsz5yRTws4fDPgEWheFOducDBghATKVzpi4OnlEOw3Xo54eIM5ZJeD9Os3MzDkGQ=="
+//     pg_3ds: "1"
+//     pg_datetime: "2023-06-18T06:41:21+00:00"
+//     pg_payment_id: "863927286"
+//     pg_salt: "uK3xKe7rEBIMZ3vU"
+//     pg_sig: "86a7e4544f71722b703d3af561f51399"
+//     pg_status: "ok"
+//     xml: "<?xml version=\\\"1.0\\\" encoding=\\\"utf-8\\\"?>\n<response><pg_payment_id>863927286</pg_payment_id><pg_status>ok</pg_status><pg_3ds>1</pg_3ds><pg_3d_md/><pg_3d_acsurl>https://secure.paybox.money/v2/user/3ds-page/24d466a5-55c8-4060-8f73-c4ef11b1de06</pg_3d_acsurl><pg_3d_pareq>eJydkU2PmzAQhv8L5yWYjyQQKVq1Ih9EmGwIgZhLZYwTTDAgMEmg6n8vUQ/dw6qHniyN5xm988xPSTxLJ5UWkmaYOpiBuWWCKZDeJNbqdqutCnZlSUGlhWg6+ibVTSUqUhUhbVpWlS9uok5e/SJrKLWPR9rcaRM0uGwde/w2zDnVganKs+mFyIapXuREnSeyOtMNk5CEppr+l4ZUZFV68t2RzISo24Wi6Gkrp6064awhVVlSIiZNp3D8XuMG8yXe+oBs4cztrQzpsEPRk6NolyW87Uh5uqPIG1xt/cBHc4i3sHd1vyI8LPy158Vnv0q0w/KLAH/2+BSjxj2npZDHOBNScQXXTLmrCinYWFWuWGS0ef9KwvJ/FNhY4A9MbvR1GtrvAN7uivjkB0EUAryxbgG3AI7iGmnr8bW6MNxBJ6/YJx0PdC5EHE2BG3g30k/zRAN3dP5euzp6jkpy0ltdovt1zIscnf060Ywf6Sbr4yhcnVSvIGVckMLvUTQdjqeD5dlXPQ7gY2+vhJeHHPUA7O01dyPn6WmOgAEaPDvLkTZmtZ3BYQ/2j3lsz5yRTws4fDPgEWheFOducDBghATKVzpi4OnlEOw3Xo54eIM5ZJeD9Os3MzDkGQ==</pg_3d_pareq><pg_datetime>2023-06-18T06:41:21+00:00</pg_datetime><pg_salt>uK3xKe7rEBIMZ3vU</pg_salt><pg_sig>86a7e4544f71722b703d3af561f51399</pg_sig></response>\n"
+//     [[Prototype]]: Object
+//   endpointName: "pay"
+//   fulfilledTimeStamp: 1687070485623
+//   isError: false
+//   isLoading: false
+//   isSuccess: true
+//   isUninitialized: false
+//   originalArgs: {pg_card_pan: '2200150543546300', pg_card_year: '29', pg_card_month: '05', pg_card_cvc: '243', pg_card_name: 'YURIY', …}
+//   requestId: "De_F-0YswlaU0Zm3SbBqR"
+//   reset: ƒ ()
+//   startedTimeStamp: 1687070466206
+//   status: "fulfilled"
+// }
+// paresRequest{
+//     currentData: 
+//       pares: "no data"
+//     [[Prototype]]: Object
+//     data: 
+//       pares : "no data"
+//     [[Prototype]]: Object
+//     endpointName: "getPares"
+//     fulfilledTimeStamp: 1687089333224
+//     isError: false
+//     isFetching: false
+//     isLoading: false
+//     isSuccess: true
+//     isUninitialized: false
+//     originalArgs: 100033
+//     requestId: "pYkqN8_2kqtp1vVnBuicB"
+//     startedTimeStamp : 1687089329521
+//     status: "fulfilled"
+// }
 import React, { useEffect, useState } from 'react';
-import {params, filter, doXMLView, clearLocalStorage} from "../../library/library"
+import {params, adapter, doXMLView, clearLocalStorage} from "../../library/library"
 import { server } from '../../settings';
 import cl from './GateToGate.module.scss'
 
@@ -64,32 +124,25 @@ const GateToGate = () => {
         setFlowParams(flowStates.responceB3DS)
     }
 
+
     // ОБработка ответа на запроса на платеж до 3DS
-    useEffect(()=>{
-        console.log('ответ на запрос',payBefore3dsResponse)       
-        if (!payBefore3dsResponse.isUninitialized, payBefore3dsResponse.isSuccess){
+    useEffect(()=>{      
+        if (!payBefore3dsResponse.isUninitialized && payBefore3dsResponse.isSuccess){
             localStorage.setItem('payBefore3dsResponse', JSON.stringify(payBefore3dsResponse)); 
-            // localStorage.setItem('flowStatus', JSON.stringify(payBefore3dsResponse)); 
-            // console.log(payBefore3dsResponse.data.status == 'ok' && payBefore3dsResponse.data.pg_3ds == '1')
-            if (payBefore3dsResponse.data.status == 'ok' && payBefore3dsResponse.data.pg_3ds == '1'){
+            if (payBefore3dsResponse.data.pg_status == 'ok' && payBefore3dsResponse.data.pg_3ds == 1){
                 setFlowParams(flowStates.dataFor3DSOrder)
             }
         }         
     },[payBefore3dsResponse])
 
-    // Отправка пользователя на 3DS
-    const sendUserTo3DS = ()=>{    
-        
-        console.log(filter(payBefore3dsResponse, 'paument_number'))
-        // timerId = setInterval(() => {
-   
-        //     paresRequest(filter(payBefore3dsResponse, 'paument_number'))
-            
-        //     console.log('waiting for Pares')
-            
-        // }, 3000);  
 
-        window.open(`${server}/g2g/perform3ds?id=`+filter(payBefore3dsResponse, 'paument_number'), '_blank');
+    // Отправка пользователя на 3DS
+    const sendUserTo3DS = ()=>{       
+        timerId = setInterval(() => {
+            paresRequest(adapter(payBefore3dsResponse, ['data','paument_number']))
+        }, 3000);  
+
+        window.open(`${server}/g2g/perform3ds?id=`+adapter(payBefore3dsResponse, ['data','paument_number']), '_blank');
     }
 
     // Приемщик парамтров 3DS
@@ -99,15 +152,28 @@ const GateToGate = () => {
             if (paresResponse.data.pares!='no data')
                 {
                     setTimeout(() => { clearInterval(timerId); ()=>{}; }, 0);
-                    console.log("stop timer pares reseived")
-
                     localStorage.setItem('paresResponse', JSON.stringify(payBefore3dsResponse)); 
                 }
             console.log(paresResponse)
         }   
     },[paresResponse])
 
+    // Платеж после прохождения 3DS
+    const doPayAfter3DS = () => {
+        // work
+        // payAfter3dsRequest({
+        //     'id': adapter(payBefore3dsResponse, ['data','paument_number']), 
+        //     'secret_key':paramsForPay.find((value) => {return value.inputID=='secret_key'}).data,
+        //     'pg_merchant_id':paramsForPay.find((value) => {return value.inputID=='pg_merchant_id'}).data
+        // })
 
+        // //test
+        payAfter3dsRequest({
+            'id': 100001, 
+            'secret_key':paramsForPay.find((value) => {return value.inputID=='secret_key'}).data,
+            'pg_merchant_id':paramsForPay.find((value) => {return value.inputID=='pg_merchant_id'}).data
+        })
+    }
 
     const reset = () => {
         clearLocalStorage()
@@ -115,6 +181,9 @@ const GateToGate = () => {
         // console.log('reset',flowParams)
     }
   
+
+
+
     // Вычисление подписи
     useEffect(()=>{
         let c = structuredClone(paramsForPay)
@@ -127,8 +196,6 @@ const GateToGate = () => {
             setParamsForPay(c)
         }
     },[paramsForPay])
-
-   
     
     const sigPayBefore3DS = () => {
 
@@ -165,21 +232,7 @@ const GateToGate = () => {
         return (md5(temp))
     }
 
-    const doPayAfter3DS = () => {
-        // work
-        payAfter3dsRequest({
-            'id': payBefore3dsResponse.data.paument_number, 
-            'secret_key':paramsForPay.find((value) => {return value.inputID=='secret_key'}).data,
-            'pg_merchant_id':paramsForPay.find((value) => {return value.inputID=='pg_merchant_id'}).data
-        })
-
-        // //test
-        // payAfter3dsRequest({
-        //     'id': 100291, 
-        //     'secret_key':paramsForPay.find((value) => {return value.inputID=='secret_key'}).data,
-        //     'pg_merchant_id':paramsForPay.find((value) => {return value.inputID=='pg_merchant_id'}).data
-        // })
-    }
+   
 
     // let xmlview = filter(payBefore3dsResponse,'xml')
     // console.log(xmlview)
@@ -195,7 +248,7 @@ const GateToGate = () => {
                         paramsForPay = {paramsForPay}
                         setParamsForPay = {setParamsForPay}
                         doPayBefore3DS = {doPayBefore3DS} 
-                        xml = {doXMLView(filter(payBefore3dsResponse,'xml'),cl.line)}                      
+                        xml = {doXMLView(adapter(payBefore3dsResponse,['data','xml']),cl.line)}                      
                     />
 
                     <Do3DS  
@@ -210,6 +263,7 @@ const GateToGate = () => {
                         paresResponse = {paresResponse}
                         paramsForPay = {paramsForPay}
                         sigPayAfter3DS = {sigPayAfter3DS}
+                        doPayAfter3DS ={doPayAfter3DS}
                     />
                 </div>
                 <Flow

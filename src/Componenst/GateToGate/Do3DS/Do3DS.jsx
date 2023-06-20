@@ -1,6 +1,6 @@
 import React from 'react';
 import cl from './Do3DS.module.scss'
-import { filter, mdCheck, pareqCheck } from '../../../library/library';
+import { adapter, mdCheck, pareqCheck } from '../../../library/library';
 
 import Form3ds from './Form3ds/Form3ds';
 
@@ -9,9 +9,9 @@ const Do3DS = ({payBefore3dsResponse, paresResponse, sendUserTo3DS}) => {
     let params = {
         "md" :            mdCheck(payBefore3dsResponse),
         'pg_3d_pareq':    pareqCheck(payBefore3dsResponse),
-        'TermUrl':filter(payBefore3dsResponse, 'TermUrl'),
+        'TermUrl':adapter(payBefore3dsResponse, ['data','TermUrl']),
         }
-    let url = filter(payBefore3dsResponse, 'pg_3d_acsurl')
+    let url = adapter(payBefore3dsResponse, ['data','pg_3d_acsurl'])
 
     return (
         <div className={cl.chapter}>
