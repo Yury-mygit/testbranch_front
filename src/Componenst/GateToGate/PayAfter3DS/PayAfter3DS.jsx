@@ -1,5 +1,5 @@
 import React from 'react';
-import {filter, mdCheck, pareqCheck} from "../../../library/library"
+import {adapter, mdCheck, pareqCheck} from "../../../library/library"
 import cl from './PayAfter3DS.module.scss'
 
 import ScreenRequest from '../../Common/ScreenRequest/ScreenRequest';
@@ -10,7 +10,8 @@ const PayAfter3DS = ({
     payBefore3dsResponse, 
     payAfter3dsResponse, 
     paresResponse, 
-    sigPayAfter3DS
+    sigPayAfter3DS,
+    doPayAfter3DS
 }) => {
     return (
         <div className={cl.wrapper}>
@@ -28,16 +29,16 @@ const PayAfter3DS = ({
 
             <ScreenRequest params = {
             [
-                {'name':'MD',             'data':filter(payBefore3dsResponse,'pg_3d_md')},
-                {'name':'pg_3d_pares',    'data':filter(paresResponse, 'pg_3d_pares')},
-                {'name':'pg_payment_id:', 'data': filter(payBefore3dsResponse, 'pg_payment_id')},
+                {'name':'MD',             'data':adapter(payBefore3dsResponse,['data','pg_3d_md'])},
+                {'name':'pg_3d_pares',    'data':adapter(paresResponse, ['data','pg_3d_pares'])},
+                {'name':'pg_payment_id:', 'data': adapter(payBefore3dsResponse, ['data','pg_payment_id'])},
                 {'name':'pg_merchant_id', 'data': paramsForPay.find((value) => {return value.inputID=='pg_merchant_id'}).data},
                 {'name':'pg_salt',        'data': 'abcde'},
                 {'name':'pg_sig:',        'data': sigPayAfter3DS(
                     {
                         'pg_3d_md':mdCheck(payBefore3dsResponse),
-                        'pg_3d_pares':filter(payBefore3dsResponse,'pg_3d_pares'),
-                        'pg_payment_id':filter(payBefore3dsResponse,'pg_3d_md'),
+                        'pg_3d_pares':adapter(payBefore3dsResponse,['data','pg_3d_pares']),
+                        'pg_payment_id':adapter(payBefore3dsResponse,['data','pg_3d_md']),
                         'pg_merchant_id':paramsForPay.find((value) => {return value.inputID=='pg_merchant_id'}).data,
                         'pg_salt':'abcde',
                     },

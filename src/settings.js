@@ -1,3 +1,3 @@
-let server ='https://acee-176-115-195-130.ngrok-free.app/api'
+let server ='https://9b52-46-39-54-69.ngrok-free.app/api'
 
 export {server}

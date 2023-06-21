@@ -37,26 +37,68 @@ const filter2 = (LoadableObject, name = '',field,filer='noooooo')=>{
    
     return field=='xml' ? defaultXML : filer
 }
-const filter = (LoadableObject,field,filer='noooooo')=>{
-    
 
-    let temp = JSON.parse(localStorage.getItem('payBefore3dsResponse'));
 
-    if (!LoadableObject.isLoading && LoadableObject.isSuccess) {
-       
-        if (field=='xml') return LoadableObject.data[field]
-        return LoadableObject.data[field]
-    }
+// const filter = (LoadableObject, field, filer='noooooo')=>{
 
-    if (temp!=null){
-        return( temp.data[field])
-    }
-    // console.log('sdsadsda', temp)
-   
-    if (field=='xml') {return defaultXML}
+//     // console.log(LoadableObject)
+//     // console.log(JSON.parse(localStorage.getItem('payBefore3dsResponse')))
 
-    return filer
+//     if (!LoadableObject.isLoading && LoadableObject.isSuccess) {     
+//         if (field=='xml') return LoadableObject.data[field]
+//         return LoadableObject.data[field]
+//     }
+
+//     if (JSON.parse(localStorage.getItem('payBefore3dsResponse'))!=null){
+//         return( JSON.parse(localStorage.getItem('payBefore3dsResponse')).data[field])
+//     }  
+//     if (field=='xml') {return defaultXML}
+
+//     return filer
+// }
+
+const checkStatus = (obj) =>{
+    if (typeof obj !=='object' || obj ==null) return false
+    return !obj.isLoading && obj.isSuccess ? true : false           
 }
+
+const adapter = (LoadableObject, field, filer = "<noooooo") => {
+  
+    if (typeof field == 'string') field = [field]
+
+    let storageObj = JSON.parse(localStorage.getItem("payBefore3dsResponse"))
+
+    let data 
+
+    if (checkStatus(LoadableObject)) {
+        data=iterator(LoadableObject, field)
+        if (data!=undefined) return data
+        else return defaultXML 
+    }
+    if (checkStatus(storageObj)) {
+        data=iterator(storageObj, field) 
+        if (data!=undefined) return data 
+        else return defaultXML
+    }
+
+    return defaultXML
+   
+  };
+  
+const iterator = (LoadableObject, field) => {
+
+    if (!LoadableObject.hasOwnProperty(field[0])) return undefined
+
+    if (field.length>1) {
+        let temp = structuredClone(field)
+        temp.shift()
+        return iterator(LoadableObject[field[0]],temp )
+    }
+   
+    return LoadableObject[field[0]]
+}
+
+
 
 
 const params = [
@@ -84,4 +126,11 @@ const params = [
     {id:32, type:'merchantData', typeText:'Данные мерчанта' ,checked:true, isDisabled:true,  inputID: 'pg_result_url', labelText:'Адрес ответа', data:'https://416b-46-39-54-23.ngrok-free.app/api/g2g/result'},
 ]
 
-export {doXMLView, defaultXML, filter,params, mdCheck, pareqCheck}
+const clearLocalStorage = (params={}) =>{
+    localStorage.removeItem("payBefore3dsResponse");
+    localStorage.removeItem("flowStatus");
+}
+
+export {doXMLView, defaultXML, adapter,params, mdCheck, pareqCheck, clearLocalStorage}
+
+
