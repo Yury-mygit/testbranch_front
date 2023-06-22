@@ -1,14 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {server} from '../settings'
 
-// console.log(server)
-
-// http://testbench/api/greeting
 export const gateApi = createApi({
     reducerPath: 'gateApi',
     baseQuery: fetchBaseQuery({ 
         baseUrl: `${server}/g2g`,
-        
+        // crendentials: "include" will face CORS if credential is not provided
+        credentials: "same-origin", 
         prepareHeaders: (headers) => {
             headers.set('Access-Control-Allow-Origin', '*');
             headers.set("Content-Type", "application/json");
