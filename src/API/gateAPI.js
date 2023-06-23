@@ -5,18 +5,18 @@ export const gateApi = createApi({
     reducerPath: 'gateApi',
     baseQuery: fetchBaseQuery({ 
         baseUrl: `${server}/g2g`,
-        // crendentials: "include" will face CORS if credential is not provided
-        credentials: "same-origin", 
-        prepareHeaders: (headers) => {
-            headers.set('Access-Control-Allow-Origin', '*');
-            headers.set("Content-Type", "application/json");
-            headers.set("Access-Control-Allow-Credentials", "True");
-            headers.set("Access-Control-Allow-Methods", "*");
-            // headers.set("Access-Control-Allow-Origin", "http://localhost:3000");
-            // console.log(headers)
-            return headers;
-        },
-        credentials: "include",
+        
+//         prepareHeaders: (headers) => {
+//             headers.set('Access-Control-Allow-Origin', '*');
+//             headers.set("Content-Type", "application/json");
+//             headers.set("Access-Control-Allow-Credentials", "True");
+//             headers.set("Access-Control-Allow-Methods", "*");
+//             // headers.set("Access-Control-Allow-Origin", "http://localhost:3000");
+//             // console.log(headers)
+//             return headers;
+//         },
+//         credentials: "include",
+
     }), 
         
         // credentials: 'include',

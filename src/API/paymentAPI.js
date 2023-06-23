@@ -5,31 +5,26 @@ import {server} from '../settings'
 export const paymentApi = createApi({
     reducerPath: 'paymentApi',
     baseQuery: fetchBaseQuery({ baseUrl: `${server}`,   
-    prepareHeaders: (headers) => {
-        headers.set('Access-Control-Allow-Origin', '*');
-        headers.set("Content-Type", "application/json");
-        headers.set("Access-Control-Allow-Credentials", "True");
-        headers.set("Access-Control-Allow-Methods", "*");
-        // headers.set("Access-Control-Allow-Origin", "http://localhost:3000");
-        // console.log(headers)
-        return headers;
-    },
-    credentials: "include",
-   
-}),  
-   
-   
-   
-   
+        prepareHeaders: (headers) => {
+            headers.set('Access-Control-Allow-Origin', '*');
+            headers.set("Content-Type", "application/json");
+            headers.set("Access-Control-Allow-Credentials", "True");
+            headers.set("Access-Control-Allow-Methods", "*");
+            // headers.set("Access-Control-Allow-Origin", "http://localhost:3000");
+            // console.log(headers)
+            return headers;
+        },
+        credentials: "include",
+    }),  
    
     endpoints: (build) =>  ({
-        getPayment: build.query({
-        query: () => `greeting`,    
-        }),
+        // getPayment: build.query({
+        // query: () => `greeting`,    
+        // }),
 
-        getPaymentPage: build.query({
-        query: () => `paymentPage`,    
-        }),
+        // getPaymentPage: build.query({
+        // query: () => `paymentPage`,    
+        // }),
 
         getPaymentStatus: build.query({
             query: (id) => `paystatus?id=${id}`,

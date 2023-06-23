@@ -48,18 +48,18 @@ const Page = () => {
         setTimeout(() => { clearInterval(timerId); console.log('stop'); }, 0);
     }
 
-    const doPayBefore3DS = () => {
-        let object = {}
-        let data = paramsForPay
-            .filter(i=>{
-                return ( 
-                    i.checked==true && 
-                    // i.inputID!='secret_key' && 
-                    i.inputID!='pg_signature'
-                )
-            }).forEach(item=> object[item.inputID]=item.data)  
-        payBefore3dsRequest(object).unwrap()
-    }
+    // const doPayBefore3DS = () => {
+    //     let object = {}
+    //     let data = paramsForPay
+    //         .filter(i=>{
+    //             return ( 
+    //                 i.checked==true && 
+    //                 // i.inputID!='secret_key' && 
+    //                 i.inputID!='pg_signature'
+    //             )
+    //         }).forEach(item=> object[item.inputID]=item.data)  
+    //     payBefore3dsRequest(object).unwrap()
+    // }
 
     const sigPayBefore3DS = () => {
 
