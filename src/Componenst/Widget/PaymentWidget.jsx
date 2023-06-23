@@ -5,6 +5,7 @@ import Desc from './Desc/Desc';
 import Listing from './Listing/Listing';
 import Screen from './Screen/Screen';
 import Menu from './Menu/Menu';
+import { server } from '../../settings';
 
 
 import { useGetPaymentQuery, usePayMutation } from '../../API/paymentAPI';
@@ -58,7 +59,7 @@ const PaymentWidget = () => {
             test: 1,  // testing mode
             options: {
                 callbacks: {
-                    result_url: "http://8c98-46-39-54-110.ngrok-free.app/api/wresult",
+                    result_url: `${server}/wresult`,
                  },
                 user: {
                     email: "user@test.com",

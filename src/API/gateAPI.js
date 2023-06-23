@@ -1,24 +1,22 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {server} from '../settings'
 
-// console.log(server)
-
-// http://testbench/api/greeting
 export const gateApi = createApi({
     reducerPath: 'gateApi',
     baseQuery: fetchBaseQuery({ 
         baseUrl: `${server}/g2g`,
         
-        // prepareHeaders: (headers) => {
-        //     headers.set('Access-Control-Allow-Origin', '*');
-        //     headers.set("Content-Type", "application/json");
-        //     headers.set("Access-Control-Allow-Credentials", "True");
-        //     headers.set("Access-Control-Allow-Methods", "*");
-        //     // headers.set("Access-Control-Allow-Origin", "http://localhost:3000");
-        //     // console.log(headers)
-        //     return headers;
-        // },
-        // credentials: "include",
+//         prepareHeaders: (headers) => {
+//             headers.set('Access-Control-Allow-Origin', '*');
+//             headers.set("Content-Type", "application/json");
+//             headers.set("Access-Control-Allow-Credentials", "True");
+//             headers.set("Access-Control-Allow-Methods", "*");
+//             // headers.set("Access-Control-Allow-Origin", "http://localhost:3000");
+//             // console.log(headers)
+//             return headers;
+//         },
+//         credentials: "include",
+
     }), 
         
         // credentials: 'include',
