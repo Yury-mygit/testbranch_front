@@ -41,7 +41,7 @@ Object.defineProperty(String.prototype, 'parseTextareaData', {
             .filter(item=>item.split('=>').length !== 2 ? true : false )
             .length
             
-            console.log(filteredArray)
+            // console.log(filteredArray)
             if (filteredArray!==0) return 0
             
             let phpArrayData = {};
@@ -65,7 +65,7 @@ Object.defineProperty(String.prototype, 'parseTextareaData', {
                 phpArrayData[key] = value
             }  
 
-            console.log(phpArrayData)
+            // console.log(phpArrayData)
             return phpArrayData
         }
     },
@@ -183,7 +183,8 @@ const merchantInitData = [
 ]
    
 const Home = () => {
-    const [textForParse, setTextForParse]           = useState('init_payment.php;parse error;9SgDhuBrKetRfYjY')
+    // const [textForParse, setTextForParse]           = useState('{\n\tinit_payment.php;\n\tparse error;\n\t9SgDhuBrKetRfYjY\n}')
+    const [textForParse, setTextForParse]           = useState('{\n\t"name":"Иван",\n\t"age":25\n}')
     const [sortedArray, setSortedArray]      = useState([])
     const [sortedString, setSortedString]   = useState('no data')
 
@@ -236,7 +237,7 @@ const Home = () => {
                         ?
                             sortedArray.map((item,index)=>{
                                 return (
-                                    <div className={cl.line} key = {index}> {item.data}  </div>
+                                    <div className={cl.line} key = {index}> {item.data===true? 'true' : item.data}  </div>
                                 )
                             })
                         : ''    

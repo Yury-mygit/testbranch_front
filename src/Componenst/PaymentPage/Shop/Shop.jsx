@@ -1,6 +1,6 @@
 import React from 'react';
 import cl from './Shop.module.scss'
-
+import {AutoResizableTextarea} from '../../Common/AutoResizableTextarea/AutoResizableTextarea'
 import Screen from './Screen/Screen';
 import Form from '../../Common/Form/Form';
 import DemoShop from './DemoShop/DemoShop';
@@ -38,6 +38,8 @@ const Shop = ({
                 <ScreenRequest
                     params = {paramsForPay} 
                 />
+
+                
 
                 <ScreenResponse 
                     view={

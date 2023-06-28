@@ -1,4 +1,5 @@
 import './App.module.scss';
+import {} from './library/Defenitions'
 import { useEffect } from 'react';
 import PaymentWidget from './Componenst/Widget/PaymentWidget';
 import { Outlet, Link } from "react-router-dom";

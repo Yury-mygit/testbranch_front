@@ -50,7 +50,7 @@ const PaymentWidget = () => {
 
     const pay = (amount) => {
         var data = {
-        token: 'GuyueDCjFrQnGmANMyIv6QV7U2G1s0gh',
+        token: 'k3ZHRc9u8Dgh7ZdT5Dda2vn4mqVccF3n',
         payment: {
             amount: amount,
             order: '3434',
