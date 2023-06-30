@@ -1,7 +1,8 @@
+import md5 from 'md5';
 Object.defineProperty(String.prototype, 'parseTextToData', {
     value: function () {
 
-       
+        let data
         // Попытка распарсить как JSON
         data = parseJSON(this)        
         if (data.status == 'ok') {
@@ -9,13 +10,13 @@ Object.defineProperty(String.prototype, 'parseTextToData', {
           return data.data
         }
         else {
-          console.log('Not a JSON')
+          // console.log('Not a JSON')
         }
 
         // Не удалось распарсить как JSON, проверяем на массив PHP
         data = parsePhpArray(this);
         if (data.status == 'ok') {
-          console.log('parsed as PHP successfully')
+          // console.log('parsed as PHP successfully')
           return data.data
         }
         else {
@@ -31,10 +32,11 @@ Object.defineProperty(String.prototype, 'parseTextToData', {
           .values(text)
           .filter(item=>{
               // console.log(item ,/[a-zA-Z0-9Аа-яА-Я{}[\]=\-_\":;,\\/]/.test(item))
-             return  /[a-zA-Z0-9Аа-яА-Я{<>\'}[\]=\-_\":;,\\/]/.test(item)
+             return  /[a-zA-Z0-9Аа-яА-Я{}<>=\-_:;,\'\\\[\\\]\\\"\\\/\\\\]/.test(item)
           })
           .join('')
-          .replace(/\\"/g,'"')
+          // .replace(/\\"/g,'"')
+          // console.log(ans)
           try {
               const jsonData = JSON.parse(ans);
               return { data: jsonData, type: 'json', status: 'ok' };
@@ -87,7 +89,7 @@ Object.defineProperty(String.prototype, 'parseTextToData', {
                 phpArrayData[key] = value
             }  
   
-            console.log(phpArrayData)
+            // console.log(phpArrayData)
             return {data: phpArrayData, type: 'php', status:'ok'}
         }
 
@@ -100,7 +102,7 @@ Object.defineProperty(String.prototype, 'parseTextToData', {
 Object.defineProperty(Object.prototype, 'makeFlatArray1', {
     value: function() {
         // let temp
-        console.log('До',this, typeof this)
+        // console.log('До',this, typeof this)
 
         if (typeof this !== 'object') return this
     
@@ -128,7 +130,7 @@ Object.defineProperty(Object.prototype, 'makeFlatArray1', {
             return array
         }
         
-        return  culc(this.data)
+        return  culc(this)
     },
     enumerable: false,
     writable: true,
@@ -146,7 +148,7 @@ Object.defineProperty(Object.prototype, 'makeSortArray1', {
     configurable: true
   });
 
-Object.defineProperty(Object.prototype, 'makeString1', {
+Object.defineProperty(Object.prototype, 'makeString', {
     value: function(url, secret) {
 
         // console.log(this,typeof this)
@@ -164,7 +166,7 @@ Object.defineProperty(Object.prototype, 'makeString1', {
     configurable: true
   });
 
-Object.defineProperty(String.prototype, 'makeSig1', {
+Object.defineProperty(String.prototype, 'makeSig', {
     value: function() {
         // let temp
         if (this == 'parse error') return this
@@ -176,7 +178,7 @@ Object.defineProperty(String.prototype, 'makeSig1', {
     configurable: true
   });
 
-Object.defineProperty(String.prototype, 'compare1', {
+Object.defineProperty(String.prototype, 'compare', {
     value: function compareStrings(str) {
         // Проверяем, являются ли строки идентичными
         if (this === str) {

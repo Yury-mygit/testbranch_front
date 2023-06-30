@@ -18,7 +18,8 @@ const Form = ({status=[], setStatus=()=>{}}) => {
                 uniqPatamTypes.map((itemType,index)=>{
                 return(
                     <div key = {index}>
-                        <h4 className={cl.groupTitle} >{uniqPatamTypesText[index]}</h4>                     
+                        <h4 className={cl.groupTitle} >{uniqPatamTypesText[index]}</h4>
+                        <div className={cl.groupData}>
                         {
                             status
                                 .filter(item=>item.type==itemType)
@@ -33,7 +34,9 @@ const Form = ({status=[], setStatus=()=>{}}) => {
                                     />
                                 )    
                             })
-                        }                       
+                        } 
+                        </div>                     
+                                             
                     </div>   
                 )   
                 })

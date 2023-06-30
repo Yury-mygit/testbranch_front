@@ -9,14 +9,12 @@ import Kit from './Componenst/Kit/Kit'
 import Frame from './Componenst/Frame/Frame'
 import SaveCard from './Componenst/SaveCard/SaveCard';
 import Home from './Componenst/Home/Home';
+import Sig from './Componenst/Sig/Sig';
+import Env from './Componenst/Env/Env';
 import GateToGate from './Componenst/GateToGate/GateToGate'
 import {useNavigate, useLocation} from "react-router-dom";
 import { Provider } from 'react-redux';
-
-import {
-    createBrowserRouter,
-    RouterProvider,
-  } from "react-router-dom";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import { store } from './store/store';
 import Cms from './Componenst/Cms/Cms';
 import Recurrent from './Componenst/Recurrent/Recurrent';
@@ -38,6 +36,14 @@ const router = createBrowserRouter([
         {
             path:"/home",
             element: <Home/>,
+        },
+        {
+            path:"/sig",
+            element: <Sig/>,
+        },
+        {
+            path:"/testenv",
+            element: <Env/>,
         },
         {
             path:"/page",
