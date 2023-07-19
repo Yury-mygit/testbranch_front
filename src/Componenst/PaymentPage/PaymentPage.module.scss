@@ -1,0 +1,44 @@
+@mixin eround {
+    margin-bottom: 20px;
+    border: 1px solid red;
+    flex-grow: 1;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px 0px 20px;
+    border: 1px solid red;
+    flex-grow: 1;
+    width: 100%;
+    
+    .globslTitle{
+        font-size: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0px 0px 15px 0px;
+        width: 100%;
+    }
+    .main{
+       display: flex;
+       flex-direction: row; 
+       border: 1px solid red;
+       flex-grow: 1;
+        .demoShop{
+            @include eround;
+            flex-grow: 0.5;
+        }
+        .form{
+            @include eround;
+            flex-grow: 1;
+        }
+        .screenResponse{
+            @include eround; 
+            flex-grow: 1;
+        }
+    }
+}
+
+

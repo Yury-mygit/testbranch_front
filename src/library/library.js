@@ -81,7 +81,7 @@ const adapter = (LoadableObject, field, filer = "<noooooo") => {
         else return defaultXML
     }
 
-    return defaultXML
+    return filer
    
   };
   

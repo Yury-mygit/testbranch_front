@@ -1,20 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cl from './Form.module.scss'
 import Block from './Block/Block';
-
+import AutoResizableTextarea from '../AutoResizableTextarea/AutoResizableTextarea';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 const Form = ({status=[], setStatus=()=>{}}) => {
 
+    // const count = useSelector((state) => state.counter.value)
+    // console.log(  useSelector((state) => state.paymentPageData.data) )
+
+    status = useSelector((state) =>state.paymentPageData.data)
+
     let uniqPatamTypes = [...new Set(status.map(i=>i.type))]
     let uniqPatamTypesText = [...new Set(status.map(i=>i.typeText))]
     
+    const [inputType, setInputType] = useState('form')
 
+    const formViewHandler   = () => setInputType('form')
+    const objectViewHandler = () => setInputType('object')
 
     return(
         <div className={cl.wrapper}>
             <h4 className={cl.title}> Данные запроса </h4>
-            {
+            <div>
+                <button onClick={formViewHandler}> форма </button>
+                <button onClick={objectViewHandler}> обьект </button>
+            </div>
+
+
+            {   
+                inputType == 'form' ? 
                 uniqPatamTypes.map((itemType,index)=>{
                 return(
                     <div key = {index}>
@@ -40,7 +56,10 @@ const Form = ({status=[], setStatus=()=>{}}) => {
                     </div>   
                 )   
                 })
-                
+                : 
+                (
+                    <AutoResizableTextarea></AutoResizableTextarea>
+                )
             }
 
         </div>

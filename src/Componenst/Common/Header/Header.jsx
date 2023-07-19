@@ -15,7 +15,7 @@ const Header = () => {
         default: 
             break;
     }
-    console.log(location.pathname.slice(1))
+    // console.log(location.pathname.slice(1))
     return (
         <div className={cl.wrapper}>
             <Link to={`/home`}  className={cl.link} style={s}>     Главная</Link>
@@ -49,22 +49,23 @@ function MyComponent() {
     
     return (
         <div onMouseEnter={handleMouseEnter} onMouseLeave={()=>{}}>
-        <span className={cl.link}>Интерактивные платежи</span>
-        {isHovered ? (
-            <div className={cl.list} onMouseLeave={()=>{handleMouseLeave()}}>
-            
-            <ul  >
-                <li><Link to={`/page`} className={cl.link} style={s}>      Страница</Link></li>
-                <li><Link to={`/widget`} className={cl.link} style={s}>    Виджет</Link></li>
-                <li><Link to={`/sdk`} className={cl.link} style={s}>       SDK</Link></li>
-                <li><Link to={`/card_save`} className={cl.link} style={s}> Сохранение карт</Link></li>
-                <li><Link to={`/reсurrent`} className={cl.link} style={s}> Реккуренты</Link></li>
-                <li><Link to={`/direct`} className={cl.link} style={s}>    Безакцепты</Link></li>
-                <li><Link to={`/g2g`} className={cl.link} style={s}>       Г2Г</Link></li>
-            </ul>
-            </div>  
+            {/* <span className={cl.link}>Интерактивные платежи</span> */}
+            <Link to={`/interactivepayments`}  className={cl.link} style={s}>Интерактивные платежи</Link>
+            {isHovered ? (
+                <div className={cl.list} onMouseLeave={()=>{handleMouseLeave()}}>
+                
+                <ul  >
+                    <li><Link to={`/page`} className={cl.link} style={s}>      Страница</Link></li>
+                    <li><Link to={`/widget`} className={cl.link} style={s}>    Виджет</Link></li>
+                    <li><Link to={`/sdk`} className={cl.link} style={s}>       SDK</Link></li>
+                    <li><Link to={`/card_save`} className={cl.link} style={s}> Сохранение карт</Link></li>
+                    <li><Link to={`/reсurrent`} className={cl.link} style={s}> Реккуренты</Link></li>
+                    <li><Link to={`/direct`} className={cl.link} style={s}>    Безакцепты</Link></li>
+                    <li><Link to={`/g2g`} className={cl.link} style={s}>       Г2Г</Link></li>
+                </ul>
+                </div>  
 
-        ) : null}
+            ) : null}
         </div>
     );
 }

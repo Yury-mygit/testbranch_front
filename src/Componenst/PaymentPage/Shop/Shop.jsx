@@ -35,11 +35,7 @@ const Shop = ({
                             />
 
 
-                <ScreenRequest
-                    params = {paramsForPay} 
-                />
-
-                
+               
 
                 <ScreenResponse 
                     view={
@@ -50,7 +46,7 @@ const Shop = ({
                 />
             </div>
             
-            
+            ывфвывв
             <div className={cl.actionButtons}>
                 <button
                     onClick={()=>payStart(amount)}

@@ -4,7 +4,7 @@ import './index.scss';
 import App from './App';
 import ErrorPage from './Componenst/ErrorPage/ErrorPage';
 import PaymentWidget from './Componenst/Widget/PaymentWidget';
-import Page from './Componenst/PaymentPage/Page';
+import PaymentPage from './Componenst/PaymentPage/PaymentPage';
 import Kit from './Componenst/Kit/Kit'
 import Frame from './Componenst/Frame/Frame'
 import SaveCard from './Componenst/SaveCard/SaveCard';
@@ -19,7 +19,7 @@ import { store } from './store/store';
 import Cms from './Componenst/Cms/Cms';
 import Recurrent from './Componenst/Recurrent/Recurrent';
 import Direct from './Componenst/Direct/Direct';
-
+import InteractivePayments from './Componenst/InteractivePayments/InteractivePayments';
 
 
 const NavToMain = () => {
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
         },
         {
             path:"/page",
-            element: <Page/>,
+            element: <PaymentPage/>,
         },
         {
             path:"/widget",
@@ -80,6 +80,10 @@ const router = createBrowserRouter([
         {
             path:"/direct",
             element: <Direct/>,
+        },
+        {
+            path:"/interactivepayments",
+            element: <InteractivePayments/>,
         },
 
       ],

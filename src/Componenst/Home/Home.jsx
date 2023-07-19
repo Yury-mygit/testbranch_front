@@ -1,6 +1,8 @@
 import React, {useState, useEffect } from 'react';
+import { Link} from "react-router-dom";
 import cl from './Home.module.scss'
 
+import { useSelector, useDispatch } from 'react-redux'
  
 const merchantInitData = [
     // {id:1, type:'merchantData', typeText:'Данные мерчанта' ,checked:true, isDisabled:true,  inputID: 'pg_merchant_id', labelText:'Номер магазина', data:541637},
@@ -21,18 +23,42 @@ const Home = () => {
        
     },[sortedArray,merchantData])
 
+
+    const count = useSelector((state) => state.counter.value)
+    // console.log(  useSelector((state) => state.counter) )
+    const dispatch = useDispatch()
+
     return (
         <div className={cl.wrapper}>
+            <h3>
+              Добрый день, коллеги! Приложение APIhelp поможет Вам выполнить следующие действия:
+            </h3>
             <p>
-               Провека подписи - проверить, корректно ли генерируется подпись, проверить вашу подпись по параметрам, которые вы передвете.
+              <Link to={`/sig`}  className={cl.link} style={s}>Проверка подписи</Link> - проверить, корректно ли генерируется подпись, проверить вашу подпись по параметрам, которые вы передвете. <br/>
+
+               Подпись запроса - зашифрованная строка, создающаяся из открытх и закрытых данных, которая позволяет проверить и идентифицировать запрос. 
+               Подпись передается в каждом запросе, и генерируется автоматически по определенному алгоритму. Хранить ее не нужно.
+               
             </p>
             <p>
-               Тестовая среда - отправка запросов в тестовую среду поможет разобраться, почему возникла та или иная ошибка
+              <Link to={`/testenv`}  className={cl.link} style={s}>Тестовая среда</Link> - отправка запросов в тестовую среду поможет разобраться, почему возникла та или иная ошибка
             </p>
             <p>
-               Интерактивные платежи - позволят в живую провести платеж, ывидеть, каккими сообщениями обмениваются системы
+              <Link to={`/interactivepayments`}  className={cl.link} style={s}>Интерактивные платежи</Link> - позволят в живую провести платеж, увидеть, каккими сообщениями обмениваются системы
+              <ul>
+                    <li><Link to={`/page`} className={cl.link} style={s}>      Страница</Link></li>
+                    <li><Link to={`/widget`} className={cl.link} style={s}>    Виджет</Link></li>
+                    <li><Link to={`/sdk`} className={cl.link} style={s}>       SDK</Link></li>
+                    <li><Link to={`/card_save`} className={cl.link} style={s}> Сохранение карт</Link></li>
+                    <li><Link to={`/reсurrent`} className={cl.link} style={s}> Реккуренты</Link></li>
+                    <li><Link to={`/direct`} className={cl.link} style={s}>    Безакцепты</Link></li>
+                    <li><Link to={`/g2g`} className={cl.link} style={s}>       Г2Г</Link></li>
+              </ul>
+
             </p>
-        
+            <div>
+      
+      </div>
 
         </div>    
     );
@@ -43,3 +69,8 @@ export default Home;
 
 
 
+let s = {
+  color:'black',
+  fontWeight: "800",
+  // textDe
+}
