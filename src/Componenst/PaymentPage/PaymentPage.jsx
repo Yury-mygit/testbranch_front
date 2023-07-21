@@ -1,5 +1,4 @@
 import React,{useState,useRef, useEffect} from 'react';
-import { initialSatate } from './Initial';
 import cl from './PaymentPage.module.scss'
 import DemoShop from './Shop/DemoShop/DemoShop';
 import Form from '../Common/Form/Form';
@@ -22,10 +21,6 @@ const PaymentPage = () => {
     const [PayStatusRequest, payStatusResponse] = useLazyGetPaymentStatusQuery();
     const [payRequest,payResponse] = usePayMutation()
 
-    const dispatch = useDispatch();
-    // console.log(  useSelector((state) => state.paymentPageData) )
-
-
     const payStart = () => {
         payRequest({'amount':10})
     }
@@ -33,17 +28,6 @@ const PaymentPage = () => {
     const payStop = () => {
         setTimeout(() => { clearInterval(timerId); console.log('stop'); }, 0);
     }
-
-    // const sigPayBefore3DS = () => {
-
-    //     let data = paramsForPay
-    //         .filter(i => i.checked && i.inputID !== 'secret_key' && i.inputID !== 'pg_signature')
-    //         .map(i=>{return { data: i.data, inputID: i.inputID }; })
-    //         .sort((a, b) => a.inputID > b.inputID ? 1 : -1)
-    //         .map(i=>i.data).join(';')
-
-    //     return md5(`init_payment;${data};${paramsForPay.find(i=>i.inputID=='secret_key').data}`)      
-    // }
 
     useEffect(()=>{
         if(!payStatusResponse.isUninitialized && payStatusResponse.isSuccess)

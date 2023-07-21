@@ -14,6 +14,9 @@ const AutoResizableTextarea = ({
       adjustTextareaHeight();
     }, []);
 
+
+    console.log(jsontext)
+
     useEffect(()=>{
     
       if (answer == 'array')  set( textForParse.parseTextToData().makeFlatArray1().makeSortArray1() )

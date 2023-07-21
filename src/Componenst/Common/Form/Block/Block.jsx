@@ -3,7 +3,7 @@ import cl from './Block.module.scss'
 import { useSelector, useDispatch } from 'react-redux';
 import { setChecked, update } from '../../../../features/paymentPageData/paymentPageDataSlice';
 
-const Block = ({item,status, setStatus}) => {
+const Block = ({item}) => {
     const dispatch = useDispatch();
     return (
         <div className={cl.wrapper} key = {item.id}>

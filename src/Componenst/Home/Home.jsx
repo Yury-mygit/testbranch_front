@@ -4,29 +4,24 @@ import cl from './Home.module.scss'
 
 import { useSelector, useDispatch } from 'react-redux'
  
-const merchantInitData = [
-    // {id:1, type:'merchantData', typeText:'Данные мерчанта' ,checked:true, isDisabled:true,  inputID: 'pg_merchant_id', labelText:'Номер магазина', data:541637},
-    {id:2, type:'merchantData', typeText:'Данные мерчанта' ,checked:true, isDisabled:true,  inputID: 'secret_key',     labelText:'Секретный ключ', data:'***********'},
-    {id:3, type:'merchantData', typeText:'Данные мерчанта' ,checked:true, isDisabled:true,  inputID: 'url',            labelText:'Адрес еднпойнта', data:'https://api.paybox.money/init_payment.php'},
-]
+// const merchantInitData = [
+//     // {id:1, type:'merchantData', typeText:'Данные мерчанта' ,checked:true, isDisabled:true,  inputID: 'pg_merchant_id', labelText:'Номер магазина', data:541637},
+//     {id:2, type:'merchantData', typeText:'Данные мерчанта' ,checked:true, isDisabled:true,  inputID: 'secret_key',     labelText:'Секретный ключ', data:'***********'},
+//     {id:3, type:'merchantData', typeText:'Данные мерчанта' ,checked:true, isDisabled:true,  inputID: 'url',            labelText:'Адрес еднпойнта', data:'https://api.paybox.money/init_payment.php'},
+// ]
    
 const Home = () => {
-    const [sortedArray, setSortedArray]      = useState([])
-    const [sortedString, setSortedString]   = useState('no data')
-    const [merchantString, setMerchantString]  = useState('init_payment.php;parse eor;9SgDhuBrKetRfYjY')
-    const [merchantData, setMerchantData] = useState(merchantInitData)  
+    // const [sortedArray, setSortedArray]      = useState([])
+    // const [sortedString, setSortedString]   = useState('no data')
+    // const [merchantString, setMerchantString]  = useState('init_payment.php;parse eor;9SgDhuBrKetRfYjY')
+    // const [merchantData, setMerchantData] = useState(merchantInitData)  
 
-    useEffect(()=>{
-        let url     = merchantData.filter(i=>i.inputID=='url')[0].data
-        let secret  = merchantData.filter(i=>i.inputID=='secret_key')[0].data
-        setSortedString(   sortedArray.makeString(url, secret )   )   
+    // useEffect(()=>{
+    //     let url     = merchantData.filter(i=>i.inputID=='url')[0].data
+    //     let secret  = merchantData.filter(i=>i.inputID=='secret_key')[0].data
+    //     setSortedString(   sortedArray.makeString(url, secret )   )   
        
-    },[sortedArray,merchantData])
-
-
-    const count = useSelector((state) => state.counter.value)
-    // console.log(  useSelector((state) => state.counter) )
-    const dispatch = useDispatch()
+    // },[sortedArray,merchantData])
 
     return (
         <div className={cl.wrapper}>
@@ -43,9 +38,9 @@ const Home = () => {
             <p>
               <Link to={`/testenv`}  className={cl.link} style={s}>Тестовая среда</Link> - отправка запросов в тестовую среду поможет разобраться, почему возникла та или иная ошибка
             </p>
-            <p>
+            <div>
               <Link to={`/interactivepayments`}  className={cl.link} style={s}>Интерактивные платежи</Link> - позволят в живую провести платеж, увидеть, каккими сообщениями обмениваются системы
-              <ul>
+              <ul className={cl.list}>
                     <li><Link to={`/page`} className={cl.link} style={s}>      Страница</Link></li>
                     <li><Link to={`/widget`} className={cl.link} style={s}>    Виджет</Link></li>
                     <li><Link to={`/sdk`} className={cl.link} style={s}>       SDK</Link></li>
@@ -55,7 +50,7 @@ const Home = () => {
                     <li><Link to={`/g2g`} className={cl.link} style={s}>       Г2Г</Link></li>
               </ul>
 
-            </p>
+            </div>
             <div>
       
       </div>

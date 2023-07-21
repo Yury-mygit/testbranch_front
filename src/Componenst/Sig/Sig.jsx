@@ -29,13 +29,9 @@ const Sig = () => {
             <h4>Проверка подписи</h4>
 
             <div className={cl.lineOne}>
+              <Form outerClass={cl.left}/>
 
-                <div className={cl.left}>
-                    <Form 
-                        status = {merchantData}
-                        setStatus={setMerchantData}
-                    />
-                   
+               <div className={cl.right}>
                     <div className={cl.sign}>
                         <h4>Подпись</h4>
                         {
@@ -44,45 +40,37 @@ const Sig = () => {
                                 .filter(i=>i.inputID=='url')[0].data , merchantData.filter(i=>i.inputID=='secret_key')[0].data)
                             .makeSig()
                         }
+                    </div>                               
+
+                    <div className={cl.lineTwo}>
+                        <h4>Вычисленная строка </h4>
+                        <p> {sortedString} </p>
                     </div>
-                                       
-                </div>
-                <div className={cl.right}>
-                    <h4>Обьект для анализа</h4>
-                    <AutoResizableTextarea  set= {setSortedArray}  />  
-                </div>
-                
-            </div>            
 
-            <div className={cl.lineTwo}>
-                <h4>Вычисленная строка </h4>
-                <p> {sortedString} </p>
-            </div>
+                    <div className={cl.lineThree}>
+                        <h4>Пользовательская строка</h4>
+                        <div className={cl.textarea}>
+                            <AutoResizableTextarea 
+                                set  = {setMerchantString}
+                                jsontext = {merchantString}
+                                addClass={cl.text}
+                                answer='string'
+                            />
+                        </div>
+                    </div>
 
-            <div className={cl.lineThree}>
-                <h4>Пользовательская строка</h4>
-                <div className={cl.textarea}>
-                    <AutoResizableTextarea 
-                        set  = {setMerchantString}
-                        jsontext = {merchantString}
-                        addClass={cl.text}
-                        answer='string'
-                    />
-                </div>
-            </div>
+                    <div className={cl.lineFour}>
+                        <h4>Сравнение строк</h4>
+                        <div className={cl.stringComparison}>
+                            <StringComparison 
+                                string1={sortedString}   
+                                string2={merchantString}   
+                            />
+                        </div>
+                    </div>
+                </div> 
 
-            <div className={cl.lineFour}>
-                <h4>Сравнение строк</h4>
-                <div className={cl.stringComparison}>
-                    <StringComparison 
-                        string1={sortedString}   
-                        string2={merchantString}   
-                    />
-                </div>
-  
-               
-        
-            </div>
+            </div>                    
           
         </div>    
     );
