@@ -23,14 +23,14 @@ const initialState = {
       {id:30, type:'merchantData', typeText:'Данные мерчанта' ,checked:true, isDisabled:true,  inputID: 'pg_merchant_id', labelText:'Номер магазина', data:541637},
       {id:31, type:'merchantData', typeText:'Данные мерчанта' ,checked:true, isDisabled:true,  inputID: 'secret_key', labelText:'Секретный ключ', data:'i0soXJL1pPQayDSs'},
       {id:32, type:'merchantData', typeText:'Данные мерчанта' ,checked:true, isDisabled:true,  inputID: 'pg_result_url', labelText:'Адрес ответа', data:'https://416b-46-39-54-23.ngrok-free.app/api/g2g/result'},
-  ]
-  // data: 1,
+  ],
+  sig:'sds',
 }
 
 // Middleware для сохранения состояния в локальное хранилище
 const saveStateMiddleware = store => next => action => {
   const result = next(action);
-  // console.log('saveStateMiddleware', store.getState().paymentPageData)
+  console.log('saveStateMiddleware', store.getState().paymentPageData)
   // Сохраняем состояние в локальное хранилище
   localStorage.setItem('reduxState', JSON.stringify(store.getState()));
 
@@ -40,7 +40,13 @@ const saveStateMiddleware = store => next => action => {
 
 // Функция для получения состояния из локального хранилища
 const getSavedState = () => {
+
+
+  console.log('getSavedState')
+
   const savedState = localStorage.getItem('reduxState');
+
+  // console.log(savedState)
 
   if (savedState) {
     return JSON.parse(savedState);
@@ -48,8 +54,11 @@ const getSavedState = () => {
 
   let state = initialState
 
-  state[state.findIndex(value=>value.inputID ==='pg_signature')].data = sigPayBefore3DS(state)
 
+  
+  // state[state.findIndex(value=>value.inputID ==='pg_signature')].data = sigPayBefore3DS(state)
+  state.sig = sigPayBefore3DS(state.data)
+ 
   // console.log('getSavedState',JSON.parse(savedState))
   return initialState;
 };

@@ -11,23 +11,12 @@ import { useSelector, useDispatch } from 'react-redux'
 // ]
    
 const Home = () => {
-    // const [sortedArray, setSortedArray]      = useState([])
-    // const [sortedString, setSortedString]   = useState('no data')
-    // const [merchantString, setMerchantString]  = useState('init_payment.php;parse eor;9SgDhuBrKetRfYjY')
-    // const [merchantData, setMerchantData] = useState(merchantInitData)  
-
-    // useEffect(()=>{
-    //     let url     = merchantData.filter(i=>i.inputID=='url')[0].data
-    //     let secret  = merchantData.filter(i=>i.inputID=='secret_key')[0].data
-    //     setSortedString(   sortedArray.makeString(url, secret )   )   
-       
-    // },[sortedArray,merchantData])
 
     return (
         <div className={cl.wrapper}>
-            <h3>
+            <h4>
               Добрый день, коллеги! Приложение APIhelp поможет Вам выполнить следующие действия:
-            </h3>
+            </h4>
             <p>
               <Link to={`/sig`}  className={cl.link} style={s}>Проверка подписи</Link> - проверить, корректно ли генерируется подпись, проверить вашу подпись по параметрам, которые вы передвете. <br/>
 

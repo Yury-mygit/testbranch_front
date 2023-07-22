@@ -15,7 +15,7 @@ const AutoResizableTextarea = ({
     }, []);
 
 
-    console.log(jsontext)
+    // console.log(jsontext)
 
     useEffect(()=>{
     
@@ -29,7 +29,7 @@ const AutoResizableTextarea = ({
       textarea.style.height = 'auto';
       // textarea.style.height = '100%';
       let a = textarea.scrollHeight
-      console.log(a)
+      // console.log(a)
 
       textarea.style.height = textarea.scrollHeight> 400? `400px` : `${textarea.scrollHeight}px`;
     };

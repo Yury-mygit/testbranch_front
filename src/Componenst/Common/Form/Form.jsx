@@ -3,10 +3,11 @@ import cl from './Form.module.scss'
 import Block from './Block/Block';
 import AutoResizableTextarea from '../AutoResizableTextarea/AutoResizableTextarea';
 import { useSelector, useDispatch } from 'react-redux';
-import { setChecked, update } from '../../../features/paymentPageData/paymentPageDataSlice';
+import { setChecked, update, reset } from '../../../features/paymentPageData/paymentPageDataSlice';
 
 
 const Form = ({outerClass=''}) => {
+    const dispatch = useDispatch();
 
     // const count = useSelector((state) => state.counter.value)
     // console.log(  useSelector((state) => state.paymentPageData.data) )
@@ -25,7 +26,7 @@ const Form = ({outerClass=''}) => {
 
     let text = params.map(item=>`${item.inputID}:${item.data}`).join(' ')
 
-    console.log(text)
+    // console.log(text)
 
         // var str = "pg_user_id:test0006 pg_user_phone:79104769733 pg_user_email:yury.myworkmail@gmail.com pg_user_ip:185.102.131.54 pg_order_id:test0012321123 pg_amount:10 pg_currency:undefined pg_auto_clearing:123123 pg_3ds_challenge:0 pg_save_card:0 pg_description:Описание заказа pg_salt:abcde pg_signature:e0953a4a2b5cd1f0a9dd7f0542ef9321 pg_merchant_id:541637 secret_key:i0soXJL1pPQayDSs pg_result_url:https://416b-46-39-54-23.ngrok-free.app/api/g2g/result";
 
@@ -68,6 +69,7 @@ const Form = ({outerClass=''}) => {
                                 {
                                     params
                                         .filter(item=>item.type==itemType)
+                                        .filter(item=>item.inputID!=='pg_signature')
                                         .map((item)=>{
                                         return(
                                             <Block  
@@ -90,6 +92,9 @@ const Form = ({outerClass=''}) => {
                         />
                     )
             }
+
+            <button onClick={()=>dispatch(reset())}
+            >dsfs</button>
 
         </div>
     );

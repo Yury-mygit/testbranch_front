@@ -3,7 +3,7 @@ import cl from './Sig.module.scss'
 import AutoResizableTextarea from '../Common/AutoResizableTextarea/AutoResizableTextarea';
 import Form from '../Common/Form/Form';
 import StringComparison from './StringComparison/StringComparison';
-
+import { useSelector, useDispatch } from 'react-redux';
  
 const merchantInitData = [
     // {id:1, type:'merchantData', typeText:'Данные мерчанта' ,checked:true, isDisabled:true,  inputID: 'pg_merchant_id', labelText:'Номер магазина', data:541637},
@@ -12,6 +12,9 @@ const merchantInitData = [
 ]
    
 const Sig = () => {
+
+    let params = useSelector((state) =>state.paymentPageData)
+
     const [sortedArray, setSortedArray]      = useState([])
     const [sortedString, setSortedString]   = useState('no data')
     const [merchantString, setMerchantString]  = useState('init_payment.php;parse eor;9SgDhuBrKetRfYjY')
@@ -23,6 +26,14 @@ const Sig = () => {
         setSortedString(   sortedArray.makeString(url, secret )   )   
        
     },[sortedArray,merchantData])
+    
+    useEffect(()=>{
+        let url     = merchantData.filter(i=>i.inputID=='url')[0].data
+        let secret  = merchantData.filter(i=>i.inputID=='secret_key')[0].data
+        setSortedString(   sortedArray.makeString(url, secret )   )   
+    },[])
+
+    // console.log(params)
 
     return (
         <div className={cl.wrapper}>
@@ -35,10 +46,12 @@ const Sig = () => {
                     <div className={cl.sign}>
                         <h4>Подпись</h4>
                         {
-                            sortedArray
-                            .makeString( merchantData
-                                .filter(i=>i.inputID=='url')[0].data , merchantData.filter(i=>i.inputID=='secret_key')[0].data)
-                            .makeSig()
+                            // sortedArray
+                            // .makeString( merchantData
+                            //     .filter(i=>i.inputID=='url')[0].data , merchantData.filter(i=>i.inputID=='secret_key')[0].data)
+                            // .makeSig()
+                            // params.sig
+
                         }
                     </div>                               
 

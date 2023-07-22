@@ -21,6 +21,7 @@ const initialState = {
         {id:31, type:'merchantData', typeText:'Данные мерчанта' ,checked:true, isDisabled:true,  inputID: 'secret_key', labelText:'Секретный ключ', data:'i0soXJL1pPQayDSs'},
         {id:32, type:'merchantData', typeText:'Данные мерчанта' ,checked:true, isDisabled:true,  inputID: 'pg_result_url', labelText:'Адрес ответа', data:'https://416b-46-39-54-23.ngrok-free.app/api/g2g/result'},
     ],
+    sig:'sds',
 }
 
 const sigPayBefore3DS = (paramsForPay=[]) => {
@@ -62,6 +63,15 @@ export const paymentPageDataSlice = createSlice({
       state.data = c
 
     },
+
+    // reset: (state)=>{
+    //   // localStorage.removeItem('reduxState')
+    //   console.log(initialState)
+    //   state ={}
+    // },
+
+    reset: () => initialState,
+
     setChecked: (state, action)=>{
 
 
@@ -77,18 +87,26 @@ export const paymentPageDataSlice = createSlice({
         c[c.findIndex(value=>value.inputID ==='pg_signature')].data = sigPayBefore3DS(c)
         state.data = c
        
-
+        // return c
         // console.log('setChecked', state.data)
-    }
+    },
 
-    
+      
   },
 })
 
 
 export {sigPayBefore3DS}
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount, mutateParams, setChecked, update } = paymentPageDataSlice.actions
+export const { 
+  increment, 
+  decrement, 
+  incrementByAmount, 
+  mutateParams,
+  setChecked, 
+  update,
+  reset 
+} = paymentPageDataSlice.actions
 
 
 
