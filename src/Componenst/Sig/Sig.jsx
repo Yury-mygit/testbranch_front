@@ -50,8 +50,8 @@ const Sig = () => {
                             // .makeString( merchantData
                             //     .filter(i=>i.inputID=='url')[0].data , merchantData.filter(i=>i.inputID=='secret_key')[0].data)
                             // .makeSig()
-                            // params.sig
-
+                            params.sig
+                            // 
                         }
                     </div>                               
 

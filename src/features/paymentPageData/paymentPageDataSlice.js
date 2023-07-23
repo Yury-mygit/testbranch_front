@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import md5 from 'md5'
 
-const initialState = {
+const initialStateData = {
     data:[
         {id:10, type:'paymentData', typeText:'Данные платежи' ,checked:false, isDisabled:false,  inputID: 'pg_user_id', labelText:'Иден-р пользователя', data: 'test0006',},
         {id:11, type:'paymentData', typeText:'Данные платежи' ,checked:true,  isDisabled:true,   inputID: 'pg_user_phone', labelText:'Телефон пользователя',data: 79104769733,},
@@ -37,9 +37,18 @@ const sigPayBefore3DS = (paramsForPay=[]) => {
     return md5(`init_payment;${data};${paramsForPay.find(i=>i.inputID=='secret_key').data}`)      
 }
 
+const getInitState = () => {
+
+  let c = structuredClone(initialStateData)
+  
+  c.sig = sigPayBefore3DS(initialStateData.data)
+
+  return c
+}
+
 export const paymentPageDataSlice = createSlice({
   name: 'data',
-  initialState,
+  initialState:getInitState(),
   reducers: {
     update: (state, action) => {
 
@@ -61,16 +70,17 @@ export const paymentPageDataSlice = createSlice({
       // console.log(sigPayBefore3DS(c))
 
       state.data = c
+      state.sig = sigPayBefore3DS(c)
 
     },
 
-    // reset: (state)=>{
-    //   // localStorage.removeItem('reduxState')
-    //   console.log(initialState)
-    //   state ={}
-    // },
-
-    reset: () => initialState,
+    // reset: () => {return getInitState()},
+    reset: () => {
+      console.log(getInitState())
+      // return initialStateData}
+      return getInitState()}
+      ,
+    // reset: (state) => {state = initialState},
 
     setChecked: (state, action)=>{
 
@@ -84,8 +94,9 @@ export const paymentPageDataSlice = createSlice({
         let c = [...a,b]
         c.sort((a,b)=>a.id>b.id ? 1 : -1)
 
-        c[c.findIndex(value=>value.inputID ==='pg_signature')].data = sigPayBefore3DS(c)
+        // c[c.findIndex(value=>value.inputID ==='pg_signature')].data = sigPayBefore3DS(c)
         state.data = c
+        state.sig = sigPayBefore3DS(c)
        
         // return c
         // console.log('setChecked', state.data)
@@ -96,7 +107,7 @@ export const paymentPageDataSlice = createSlice({
 })
 
 
-export {sigPayBefore3DS}
+export {sigPayBefore3DS, getInitState}
 // Action creators are generated for each case reducer function
 export const { 
   increment, 

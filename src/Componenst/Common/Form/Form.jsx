@@ -14,7 +14,7 @@ const Form = ({outerClass=''}) => {
 
     let params = useSelector((state) =>state.paymentPageData.data)
 
-    console.log(params)
+    // console.log(params)
 
     let uniqPatamTypes = [...new Set(params.map(i=>i.type))]
     let uniqPatamTypesText = [...new Set(params.map(i=>i.typeText))]
@@ -53,7 +53,7 @@ const Form = ({outerClass=''}) => {
     return(
         <div className={[cl.wrapper, outerClass].join(' ')}>
             <h4 className={cl.title}> Данные запроса </h4>
-            <div>
+            <div className=''>
                 <button onClick={formViewHandler}> форма </button>
                 <button onClick={objectViewHandler}> обьект </button>
             </div>
@@ -94,7 +94,7 @@ const Form = ({outerClass=''}) => {
             }
 
             <button onClick={()=>dispatch(reset())}
-            >dsfs</button>
+            >Сбросить</button>
 
         </div>
     );
